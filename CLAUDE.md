@@ -124,6 +124,20 @@ explicitly asks to revisit a stage. Summary:
   CTA on every piece of content.
 - Never call either tier a "course."
 
+## Conversion Engine — APPROVED, see conversion-engine.md
+
+Lead magnet and capture path locked in
+[`conversion-engine.md`](conversion-engine.md) — read it before writing any
+lead-magnet copy, capture post, or DM sequence. Summary:
+
+- **Lead magnet:** written guide/checklist (PDF) — the win is a real,
+  finished piece of published content, not just theory or time saved.
+- **Path:** Twin video → lead magnet (capture) → straight to the core CTA
+  (no warm-up sequence, no extra asset, no call step).
+- **Open gaps (Module 2):** delivery mechanism for the PDF, and whether to
+  add an optional value-before-CTA asset. Don't invent answers for these —
+  ask Mohamed when the task genuinely needs them resolved.
+
 ## Tools
 
 - **Higgsfield** (`mcp__fbc7be1f-...`) — image/video generation, website
