@@ -103,14 +103,26 @@ default. Still exercise judgment: this is about not blocking on
 approval-for-approval's-sake, not a green light to publish something
 brand-risky or irreversible without at least flagging it first.
 
-## The offer
+## The offer & funnel — APPROVED, see offer.md
+
+Full funnel map (4 stages: Hook → Interest → Consideration → Action) is
+locked in [`offer.md`](offer.md) — read it before writing funnel-stage
+content. Treat it as finalized; don't re-run the funnel audit unless Mohamed
+explicitly asks to revisit a stage. Summary:
 
 - **Self-build tier:** Skool community (courses + community) + one 1:1
   implementation session included. **$29/month** founding-member pricing.
 - **Done-for-you tier:** full setup built by the team. **$499** one-time.
-  CTA routes to Calendly: `https://calendly.com/contact-aiscale-engine/30min`.
-- Positioning is always framed as a fork: *"Build it yourself, or let us
-  build it for you."* Never call either tier a "course."
+  Booking: `https://calendly.com/contact-aiscale-engine/30min`.
+- **Primary funnel CTA (Stage 4, locked):** single path — *"Join the AI
+  Scale Engine — link in bio. $29/month."* This is the ONE CTA most content
+  should point to, not a fork.
+- The done-for-you tier is a secondary offer surfaced separately (e.g. the
+  website's "We build it for you" section) — it is NOT the funnel's primary
+  CTA. Only use the "build it yourself, or let us build it for you" framing
+  in contexts specifically selling the done-for-you tier, not as the default
+  CTA on every piece of content.
+- Never call either tier a "course."
 
 ## Tools
 

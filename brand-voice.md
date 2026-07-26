@@ -124,9 +124,13 @@ Prescriptive, not Socratic: **"Here's exactly what you need to do."** Authority 
 
 - **Educating:** show the system/engine working — screen shares, real demos, real numbers. Teach by showing, not by lecturing.
 - **Storytelling:** anchor to the real before/after (CapCut nights → the engine) — always tie back to a concrete number.
-- **Selling:** frame as a clear fork — *"Build it yourself, or let us build it for you."* Never soft-sell; state the two paths plainly.
+- **Selling:** default to the single primary CTA (join the community,
+  $29/month). Use the fork — *"Build it yourself, or let us build it for
+  you"* — only when specifically selling the $499 done-for-you tier. Never
+  soft-sell either path; state it plainly.
 - **Hooks:** short, punchy, urgency-loaded, first line does the work.
-- **CTAs:** direct and dual-path — invite into the community/system to build it themselves, or offer the done-for-you build.
+- **CTAs:** direct. Default to the single community CTA; use the dual-path
+  fork only in done-for-you-specific content.
 - **Community posts (Skool):** same direct energy, slightly warmer — still no fluff, but more "let's go" than broadcast.
 - **Short-form video:** hook in first 2 seconds, tied to a real number or result, high energy throughout.
 
@@ -155,11 +159,17 @@ Primary: **urgency** — "move now or get left behind." Supporting: confidence (
 
 ## 16. CTA STYLE
 
-Two-path, fork-framed — always give both options, never just one:
-- **"Join the AI Scale Engine and build your system — or let us build it for you."**
-- "Link in bio — install the system."
+**Primary CTA (default, per the locked funnel — see `offer.md`):** single
+path — *"Join the AI Scale Engine — link in bio. $29/month."* This is the
+ONE CTA most content should point to.
+
 - Engagement-only (no ask): "Tell me in the comments."
 - Reserve/DM funnel: DM keyword **"ENGINE"** for a conversation-based path.
+- **Fork CTA (secondary, done-for-you-specific only):** *"Join the AI Scale
+  Engine and build your system — or let us build it for you."* Use this
+  two-path framing only in content specifically selling the $499 done-for-you
+  tier (e.g. the website's "We build it for you" section) — not as the
+  default CTA.
 
 ---
 
@@ -199,7 +209,7 @@ Two-path, fork-framed — always give both options, never just one:
 "Post your before-numbers below — hours spent on content this week. Let's see what we're replacing."
 
 **CTA:**
-"Join the AI Scale Engine — build it yourself, or let us build it for you. Link in bio."
+"Join the AI Scale Engine — link in bio. $29/month."
 
 ---
 
@@ -227,7 +237,7 @@ Two-path, fork-framed — always give both options, never just one:
 
 ## 20. FINAL BRAND VOICE SUMMARY
 
-AI Scale Engine speaks as the operator who already built and runs the system, not a peer sharing the struggle or a mentor coaching from ahead. Every post is short, punchy, urgent, and anchored to a real number or a real demo of the engine running. The core offer is never "content help" — it's a system, framed as a clear fork: build it yourself inside the community, or have it built for you. No hype, no generic AI-growth language, no manufactured urgency — just direct instruction, real proof, and a persistent undertone of "move now."
+AI Scale Engine speaks as the operator who already built and runs the system, not a peer sharing the struggle or a mentor coaching from ahead. Every post is short, punchy, urgent, and anchored to a real number or a real demo of the engine running. The core offer is never "content help" — it's a system. Default CTA is single-path: join the community and build it yourself ($29/month) — the fork ("build it yourself, or have it built for you") is reserved for content specifically selling the $499 done-for-you tier. No hype, no generic AI-growth language, no manufactured urgency — just direct instruction, real proof, and a persistent undertone of "move now."
 
 ---
 
