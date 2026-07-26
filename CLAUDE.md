@@ -117,6 +117,30 @@ brand-risky or irreversible without at least flagging it first.
 - Social links: Instagram `https://www.instagram.com/aiscale_engine/`,
   TikTok `https://www.tiktok.com/@aiscaleengine`.
 
+## Brand colors (for widgets, visuals, and any generated UI)
+
+- Background: `#0a0a0a`
+- Ink/text: `#f5f1ea`
+- Accent (orange, single locked accent): `#ff7a1a`
+- Line/border: `rgba(245, 241, 234, 0.12)`
+
+Source of truth: `--ase-bg` / `--ase-ink` / `--ase-orange` / `--ase-line` in
+the website repo's `app/src/styles.css`. Apply these colors by default to any
+interactive quiz/audit widget, mockup, or visual built for this project —
+don't default to generic blue/white unless explicitly asked.
+
+## Widget / elicitation quiz rule
+
+When running a quiz-style audit (funnel map, brand voice, offer, etc.) with
+clickable option widgets, ALWAYS render the complete elicitation form
+structure — `<form class="elicit">` containing `.elicit-header`,
+`.elicit-body` (with `.elicit-group` > `.elicit-pills` > `.elicit-pill`
+buttons), and `.elicit-footer` with Skip/Continue buttons. A bare
+`.elicit-group` without the surrounding form/header/footer renders pills that
+look clickable but have no working click handling — this has caused a real
+frustrating bug for Mohamed once already (clicks did nothing). Never render a
+partial/bare group again. Style the form chrome with the brand colors above.
+
 ## Reference file stack (may not all exist yet)
 
 `brand-voice.md` (exists), `funnel-map.md`, `AVATAR_LOCK.md`,
