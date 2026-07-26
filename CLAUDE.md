@@ -135,11 +135,21 @@ When running a quiz-style audit (funnel map, brand voice, offer, etc.) with
 clickable option widgets, ALWAYS render the complete elicitation form
 structure — `<form class="elicit">` containing `.elicit-header`,
 `.elicit-body` (with `.elicit-group` > `.elicit-pills` > `.elicit-pill`
-buttons), and `.elicit-footer` with Skip/Continue buttons. A bare
-`.elicit-group` without the surrounding form/header/footer renders pills that
-look clickable but have no working click handling — this has caused a real
-frustrating bug for Mohamed once already (clicks did nothing). Never render a
-partial/bare group again. Style the form chrome with the brand colors above.
+buttons), and `.elicit-footer`. A bare `.elicit-group` without the
+surrounding form/header/footer renders pills that look clickable but have no
+working click handling — this has caused a real frustrating bug for Mohamed
+once already (clicks did nothing). Never render a partial/bare group again.
+Style the form chrome with the brand colors above.
+
+**Auto-advance on selection (confirmed 2026-07-26):** single-select
+questions in these quizzes must auto-submit on click — no separate Continue
+click, no confirmation step. On click: mark the pill `aria-pressed="true"`,
+apply the selected-state highlight, hold for ~400ms so the click visibly
+registers, then submit automatically (same payload/format a manual Continue
+click would produce) and move to the next question. Do not require a second
+click. Still render the Skip button for the "no good answer, let me type"
+path — only the Continue click is removed by auto-advance, not the escape
+hatches (Skip / Other+textarea).
 
 ## Reference file stack (may not all exist yet)
 
