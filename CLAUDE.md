@@ -95,7 +95,7 @@ brand-risky or irreversible without at least flagging it first.
 ## The offer
 
 - **Self-build tier:** Skool community (courses + community) + one 1:1
-  implementation session included. **$19/month** founding-member pricing.
+  implementation session included. **$29/month** founding-member pricing.
 - **Done-for-you tier:** full setup built by the team. **$499** one-time.
   CTA routes to Calendly: `https://calendly.com/contact-aiscale-engine/30min`.
 - Positioning is always framed as a fork: *"Build it yourself, or let us

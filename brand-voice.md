@@ -236,7 +236,7 @@ AI Scale Engine speaks as the operator who already built and runs the system, no
 "I help **established coaches stuck at a plateau** install an **AI content engine that publishes for them** — so their week goes back to **coaching clients, not creating content**."
 
 - Format: Skool community (courses + community) **+ one 1:1 implementation session included**
-- Price: **$19/month** at launch (founding-member pricing) for the self-build system; **$499 full done-for-you setup** for those who want it built for them
+- Price: **$29/month** at launch (founding-member pricing) for the self-build system; **$499 full done-for-you setup** for those who want it built for them
 - What's genuinely different: Mohamed is his own case study — his engine runs his content today (5 posts/week, 2 hrs of review). It's a *system you install*, not a course you watch.
 
 ## MY STORIES (true, specific — the anti-AI-slop fuel)
