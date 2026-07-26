@@ -105,15 +105,38 @@ hero generation. Summary:
 - Realism: preserve exact identity and skin texture; no beauty filter, no
   smoothing, no CGI look.
 
-## Standing rule — Avatar Lock
+## Standing rule — Avatar Lock (CONFIRMED, 2026-07-26)
 
-Any image or video depicting Mohamed must use his locked avatar Element as
-the identity/likeness reference, even if not mentioned explicitly (set in
-"Module 3" of his system). Exact Element ID/location still unconfirmed —
-`AVATAR-MOHAMED.md` in [ai-scale-engine-test](../ai-scale-engine-test) may be
-related but is unconfirmed. Per the execution-default rule above, don't stop
-to ask about this unless a specific avatar-generation task truly can't
-proceed without it.
+Any image or video depicting Mohamed must use his locked Higgsfield Element
+as the identity/likeness reference, even if not mentioned explicitly.
+
+- **Element name:** `mohamed-avatar-2` (the name `mohamed-avatar` and several
+  variants were already taken by older elements in the workspace — Higgsfield
+  auto-suffixed this one; the name is cosmetic, the ID below is what's
+  actually used)
+- **Element ID:** `9cf95684-c068-4807-bfa8-08aaa3add7c5`
+- **Status:** LOCKED / APPROVED
+- **Contains (bundled as ONE element, not 3 separate ones):** Hero Photo
+  (primary facial identity — [`assets/hero-v3.png`](assets/hero-v3.png)),
+  Turnaround Sheet (profile/side angles, proportions, hairstyle consistency),
+  Close-Up Sheet (skin detail, eyes, beard pattern, texture, asymmetry)
+
+**Usage rule:** for every future Higgsfield image or Seedance/video
+generation involving Mohamed, embed `<<<9cf95684-c068-4807-bfa8-08aaa3add7c5>>>`
+in the generation prompt as the identity reference — the backend
+auto-injects the image and rewrites it to `@mohamed-avatar-2`. Never generate
+his likeness from a raw selfie, an old photo, or memory alone once this
+Element is available. Do not ask Mohamed to re-upload the Hero/Turnaround/
+Close-Up images again unless he explicitly replaces the avatar reference set,
+the Element becomes unavailable, or he intentionally creates a new avatar
+version. If a request conflicts with this rule, ask before generating.
+
+**Known clutter (not cleaned up, no destructive action taken):** the
+workspace also has 4 older, now-superseded "mohamed-avatar" elements from
+prior sessions (`Mohamed-avatar`, `mohamed-avatar-1`, `Mohamed-avatar-v2`,
+plus another). These are NOT the locked reference — do not use them. They
+were left in place rather than deleted since deleting Higgsfield assets
+wasn't requested.
 
 ## Publishing
 
