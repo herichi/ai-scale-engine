@@ -85,6 +85,26 @@ directing avatar content, consider facial/voice/personality/wardrobe/
 lighting/framing/tone consistency together, not image generation in
 isolation.
 
+## Visual reference — APPROVED, see visual-reference.md
+
+The locked look for any generated image/video depicting Mohamed is in
+[`visual-reference.md`](visual-reference.md) — read it before ANY avatar or
+hero generation. Summary:
+
+- Approved hero image: [`assets/hero-v3.png`](assets/hero-v3.png) (9:16, 4K).
+- Identity reference: Higgsfield media_id
+  `71682c17-406a-4c0a-a88b-f2bb36fe5340` (`reference_Me_.jpg`).
+- Model MUST be `gpt_image_2` — never `soul_2`/Soul models (they force-rewrite
+  the prompt and ignore framing instructions).
+- Framing: camera 90cm–1.2m, eye-level, centered, face 35–42% of frame
+  height, crop mid-torso up, no legs, no desk foreground.
+- Lighting (Mohamed specifically approved this): soft warm key ~30–45° above
+  eye level, subtle opposite fill, blue LED accent on background only (never
+  on skin), warm ~2700–3200K practical lamp — warm subject vs. cool blue
+  background.
+- Realism: preserve exact identity and skin texture; no beauty filter, no
+  smoothing, no CGI look.
+
 ## Standing rule — Avatar Lock
 
 Any image or video depicting Mohamed must use his locked avatar Element as
