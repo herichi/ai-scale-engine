@@ -33,6 +33,17 @@ than leaving it split across locations.
 Reason: this project folder is the single place Mohamed's business context
 lives. Fragmented storage defeats the point of a second brain.
 
+**Corollary — don't import unconfirmed outside files as authoritative
+context.** Files found elsewhere on disk (e.g. `~/coaching-business/
+TWIN_BLUEPRINT.md`, other project folders) are NOT automatically valid
+context just because they exist and look related. Mohamed flagged this
+directly on 2026-07-26 after a price figure was pulled from an
+uncommunicated outside file and used to override a number already in this
+project. Only treat facts from files inside `ai-scale-engine-mo-test-3` (or
+facts Mohamed states directly in chat) as confirmed. If an outside file
+seems relevant, surface it and ask before using it to override anything
+already locked here — don't silently treat it as more authoritative.
+
 ## Execution defaults
 
 - Default to **execution**, not a missing-context audit. Don't ask "where is
