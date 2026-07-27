@@ -33,6 +33,18 @@ than leaving it split across locations.
 Reason: this project folder is the single place Mohamed's business context
 lives. Fragmented storage defeats the point of a second brain.
 
+**One deliberate exception (confirmed with Mohamed, 2026-07-27):** the
+`avatar-video` Claude Code skill lives at
+`ThefounderStudio/.claude/skills/avatar-video/SKILL.md` — one level above
+this project folder — because skills are discovered from `.claude/skills/`
+at the session's working-directory root, and nesting it inside this project
+subfolder risked it not being auto-discovered. All the skill's actual
+creative/generation content (GLOBAL_VIDEO_DIRECTION.md,
+visual-reference.md, AVATAR_LOCK.md) still lives inside this project folder
+— the skill file itself only orchestrates them. Don't move this file back
+into the project folder without re-confirming discovery still works from
+wherever sessions are run.
+
 **Corollary — don't import unconfirmed outside files as authoritative
 context.** Files found elsewhere on disk (e.g. `~/coaching-business/
 TWIN_BLUEPRINT.md`, other project folders) are NOT automatically valid
