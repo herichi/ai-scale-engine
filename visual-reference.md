@@ -78,7 +78,38 @@ Framing rules:
 
 ---
 
-## LOCKED LIGHTING (the part Mohamed specifically approved)
+## LOCKED LIGHTING & ENVIRONMENT (CURRENT — updated 2026-07-26)
+
+Superseded the original podcast-studio warm/blue look below. Mohamed's
+note: *"i don't like the lighting in this video, i want to change my
+avatar [environment/lighting]"* — he explicitly rejected the old setup and
+supplied a new reference image (`my avatar.jpg`, media_id
+`b1918e56-d64b-44bf-9434-9d624028636c`), used for environment/lighting/style
+only — his locked facial identity (`mohamed-avatar-2`, see AVATAR_LOCK.md)
+is unchanged.
+
+- **Background:** illuminated neon-outline world map on the wall behind the
+  subject, white/cool-white line art on a muted purple/lavender-washed wall.
+- **Ambient color:** overall cool purple/lavender wash across the scene —
+  replaces the old warm-vs-blue contrast with a single cool tonal wash.
+- **Studio furniture:** dark metal shelving/rack visible to one side, dark
+  wood desk, black ceramic mug, boom-arm podcast microphone positioned to
+  one side (not blocking the face), laptop visible at the desk edge.
+- **Wardrobe (this look):** beige/tan blazer over a black crew-neck top —
+  distinct from the white/cream top in the original hero reference; use
+  this wardrobe only when generating in this new environment.
+- **Framing:** stays consistent with the locked framing rules below (medium
+  shot, hands visible, no legs) — only the lighting/background/wardrobe
+  changed, not the camera distance/crop logic.
+
+**Reference image:** `b1918e56-d64b-44bf-9434-9d624028636c` (`my avatar.jpg`)
+— use as a style/environment reference alongside the `mohamed-avatar-2`
+identity Element, NOT as a replacement identity reference (different
+glasses/outfit than the locked identity photos — face should still come
+from the locked Element).
+
+<details>
+<summary>Superseded — original podcast-studio warm/blue look (kept for reference, not currently in use)</summary>
 
 - **Key light:** large, soft, diffused; slightly above eye level; ~30–45°
   from camera; warm-neutral on skin; soft facial shadows, flattering but
@@ -92,22 +123,17 @@ Framing rules:
   creating warm contrast against the blue.
 - **Net result:** refined warm/orange subject against cool blue background
   accents. Skin stays natural and warm.
+- **Environment:** premium, professional podcast studio: dark wood or dark
+  acoustic wall panels, modern and minimal, warm practical lamp, subtle blue
+  LED behind subject, shelves/monitor/acoustic panels softly visible in
+  background. Podcast mic on a boom arm — to one side, never blocking the
+  face, never oversized. Must NOT read as: gaming room, neon streamer setup,
+  cluttered office, cheap webcam setup.
 
----
-
-## ENVIRONMENT
-
-Premium, professional podcast studio: dark wood or dark acoustic wall
-panels, modern and minimal, warm practical lamp, subtle blue LED behind
-subject, shelves/monitor/acoustic panels softly visible in background.
-Optional podcast mic on a boom arm — to one side, never blocking the face,
-never oversized.
-
-Must NOT read as: gaming room, neon streamer setup, cluttered office, cheap
-webcam setup.
+</details>
 
 Depth: shallow but realistic — subject very sharp, background softly
-blurred, no extreme bokeh.
+blurred, no extreme bokeh (unchanged in the new look).
 
 ---
 

@@ -91,17 +91,20 @@ The locked look for any generated image/video depicting Mohamed is in
 [`visual-reference.md`](visual-reference.md) — read it before ANY avatar or
 hero generation. Summary:
 
-- Approved hero image: [`assets/hero-v3.png`](assets/hero-v3.png) (9:16, 4K).
-- Identity reference: Higgsfield media_id
-  `71682c17-406a-4c0a-a88b-f2bb36fe5340` (`reference_Me_.jpg`).
+- Face/identity: ALWAYS from the locked `mohamed-avatar-2` Element (see
+  Avatar Lock section below) — never swap identity without Mohamed
+  explicitly requesting an avatar replacement.
+- Environment/lighting (CURRENT, updated 2026-07-26): neon-outline world map
+  background, cool purple/lavender wash, beige blazer over black top, dark
+  metal shelving, boom mic. Style reference: media_id
+  `b1918e56-d64b-44bf-9434-9d624028636c` (`my avatar.jpg`) — used for
+  environment/lighting only, not identity. Mohamed rejected the prior
+  warm/blue podcast-studio lighting; that spec is kept in
+  `visual-reference.md` as superseded, not deleted.
 - Model MUST be `gpt_image_2` — never `soul_2`/Soul models (they force-rewrite
   the prompt and ignore framing instructions).
-- Framing: camera 90cm–1.2m, eye-level, centered, face 35–42% of frame
-  height, crop mid-torso up, no legs, no desk foreground.
-- Lighting (Mohamed specifically approved this): soft warm key ~30–45° above
-  eye level, subtle opposite fill, blue LED accent on background only (never
-  on skin), warm ~2700–3200K practical lamp — warm subject vs. cool blue
-  background.
+- Framing (unchanged): camera 90cm–1.2m, eye-level, centered, face 35–42% of
+  frame height, crop mid-torso up, no legs, no desk foreground.
 - Realism: preserve exact identity and skin texture; no beauty filter, no
   smoothing, no CGI look.
 
