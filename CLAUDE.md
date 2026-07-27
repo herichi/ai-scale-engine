@@ -153,6 +153,23 @@ plus another). These are NOT the locked reference — do not use them. They
 were left in place rather than deleted since deleting Higgsfield assets
 wasn't requested.
 
+## Standing rule — Voice Lock (CONFIRMED, 2026-07-27)
+
+Every avatar video generated for this project must use Mohamed's real
+cloned voice, never Seedance's native/robotic voice. Full detail in
+[`VOICE_LOCK.md`](VOICE_LOCK.md). Summary:
+
+- **Voice ID:** `801145c1-885e-433c-a6f4-b272acd10d38` (`mohamed-voice`,
+  `voice_type: element`)
+- **Pipeline (non-optional):** generate the video with `generate_audio:
+  true` (placeholder native audio for lip-sync timing), then immediately
+  run `voice_change` with the voice ID above to swap in his real voice.
+  There is no way to generate directly in the cloned voice — this two-step
+  swap is required every time.
+- `voice_change` has no cost preflight — check credit balance before/after
+  to see the actual charge. Jobs commonly sit in `waiting` status 10+
+  minutes before processing; this is normal, don't retry early.
+
 ## Publishing
 
 Prepare platform-ready assets and do not force unnecessary approval steps
