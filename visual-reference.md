@@ -8,13 +8,19 @@ visually consistent across content.
 
 ---
 
-## LOCKED HERO IMAGE
+## LOCKED HERO IMAGE (CURRENT — updated 2026-07-27)
 
-**File:** [`assets/hero-v3.png`](assets/hero-v3.png) — 2160×3840 (9:16), 4K
+**File:** [`assets/hero-v4.png`](assets/hero-v4.png) — 2160×3840 (9:16), 4K
 
-Approved on 2026-07-26 after three iterations. Mohamed's note: *"will keep
-the last one as reference — the lighting is good."* The lighting setup in
-this image is the reference standard, not just the framing.
+Approved on 2026-07-27. Mohamed's note: *"perfect lock this one as hero
+image."* Generated from the locked `mohamed-avatar-2` identity Element,
+combining face/outfit/background from the world-map reference image with
+off-face, angled soft lighting from a second reference image (Mohamed
+explicitly rejected flat direct-on-face lighting in the first world-map
+attempt). Job id `c8aeeb32-aa3e-4c34-a482-37c16edd492e`.
+
+Superseded [`assets/hero-v3.png`](assets/hero-v3.png) (the original
+podcast-studio warm/blue hero) — v3 kept on disk for reference, not deleted.
 
 ---
 
@@ -102,11 +108,17 @@ is unchanged.
   shot, hands visible, no legs) — only the lighting/background/wardrobe
   changed, not the camera distance/crop logic.
 
-**Reference image:** `b1918e56-d64b-44bf-9434-9d624028636c` (`my avatar.jpg`)
-— use as a style/environment reference alongside the `mohamed-avatar-2`
-identity Element, NOT as a replacement identity reference (different
-glasses/outfit than the locked identity photos — face should still come
-from the locked Element).
+**Reference images:**
+- `0c606b9b-8398-4c08-8f0c-6d19e7c27cc9` — face/outfit/background reference
+  (world-map, beige blazer, black top, dark shelving, desk/mic/mug)
+- `401402ba-d2eb-4905-9d26-a5c45221b0b2` — lighting/camera-angle reference
+  ONLY: soft off-face key light (light does NOT hit the face directly/flat),
+  natural shadow falloff, subtle cool blue accent, natural eye-level medium
+  shot rather than a flat dead-center mugshot angle
+
+Use both alongside the `mohamed-avatar-2` identity Element, NOT as
+replacement identity references — face always comes from the locked
+Element.
 
 <details>
 <summary>Superseded — original podcast-studio warm/blue look (kept for reference, not currently in use)</summary>

@@ -94,13 +94,13 @@ hero generation. Summary:
 - Face/identity: ALWAYS from the locked `mohamed-avatar-2` Element (see
   Avatar Lock section below) — never swap identity without Mohamed
   explicitly requesting an avatar replacement.
-- Environment/lighting (CURRENT, updated 2026-07-26): neon-outline world map
-  background, cool purple/lavender wash, beige blazer over black top, dark
-  metal shelving, boom mic. Style reference: media_id
-  `b1918e56-d64b-44bf-9434-9d624028636c` (`my avatar.jpg`) — used for
-  environment/lighting only, not identity. Mohamed rejected the prior
-  warm/blue podcast-studio lighting; that spec is kept in
-  `visual-reference.md` as superseded, not deleted.
+- Approved hero image (CURRENT, updated 2026-07-27):
+  [`assets/hero-v4.png`](assets/hero-v4.png) — neon-outline world-map
+  background, beige blazer over black top, dark metal shelving, boom mic,
+  soft OFF-FACE angled lighting (not flat/direct-on-face). Mohamed rejected
+  both the original warm/blue podcast-studio look AND a first world-map
+  attempt with flat direct lighting — both kept in `visual-reference.md` as
+  superseded, not deleted.
 - Model MUST be `gpt_image_2` — never `soul_2`/Soul models (they force-rewrite
   the prompt and ignore framing instructions).
 - Framing (unchanged): camera 90cm–1.2m, eye-level, centered, face 35–42% of
