@@ -107,12 +107,13 @@ hero generation. Summary:
   Avatar Lock section below) — never swap identity without Mohamed
   explicitly requesting an avatar replacement.
 - Approved hero image (CURRENT, updated 2026-07-27):
-  [`assets/hero-v4.png`](assets/hero-v4.png) — neon-outline world-map
+  [`assets/hero-v5.png`](assets/hero-v5.png) — neon-outline world-map
   background, beige blazer over black top, dark metal shelving, boom mic,
-  soft OFF-FACE angled lighting (not flat/direct-on-face). Mohamed rejected
-  both the original warm/blue podcast-studio look AND a first world-map
-  attempt with flat direct lighting — both kept in `visual-reference.md` as
-  superseded, not deleted.
+  soft OFF-FACE angled lighting, glare-free glasses lenses. Mohamed rejected
+  the original warm/blue podcast-studio look, a first world-map attempt
+  with flat direct lighting, and a second attempt with fake-looking glasses
+  glare — all three kept in `visual-reference.md` as superseded, not
+  deleted.
 - Model MUST be `gpt_image_2` — never `soul_2`/Soul models (they force-rewrite
   the prompt and ignore framing instructions).
 - Framing (unchanged): camera 90cm–1.2m, eye-level, centered, face 35–42% of
@@ -159,7 +160,7 @@ Every avatar video generated for this project must use Mohamed's real
 cloned voice, never Seedance's native/robotic voice. Full detail in
 [`VOICE_LOCK.md`](VOICE_LOCK.md). Summary:
 
-- **Voice ID:** `801145c1-885e-433c-a6f4-b272acd10d38` (`mohamed-voice`,
+- **Voice ID:** `865307a6-0146-4d08-a51e-17fe0d912da5` (`mohamed-voice-v2`,
   `voice_type: element`)
 - **Pipeline (non-optional):** generate the video with `generate_audio:
   true` (placeholder native audio for lip-sync timing), then immediately

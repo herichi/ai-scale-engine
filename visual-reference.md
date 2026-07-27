@@ -10,17 +10,18 @@ visually consistent across content.
 
 ## LOCKED HERO IMAGE (CURRENT — updated 2026-07-27)
 
-**File:** [`assets/hero-v4.png`](assets/hero-v4.png) — 2160×3840 (9:16), 4K
+**File:** [`assets/hero-v5.png`](assets/hero-v5.png) — 2160×3840 (9:16), 4K
 
-Approved on 2026-07-27. Mohamed's note: *"perfect lock this one as hero
-image."* Generated from the locked `mohamed-avatar-2` identity Element,
-combining face/outfit/background from the world-map reference image with
-off-face, angled soft lighting from a second reference image (Mohamed
-explicitly rejected flat direct-on-face lighting in the first world-map
-attempt). Job id `c8aeeb32-aa3e-4c34-a482-37c16edd492e`.
+Approved on 2026-07-27. Mohamed flagged that hero-v4's glasses showed a
+fake-looking bright reflection/glare on the lenses. This version explicitly
+prompts glare-free, polarized-look lenses so the eyes stay visible and
+natural. Same locked identity, studio, and off-face soft lighting as v4.
+Job id `c2281451-ac7e-4f11-affa-7386146537cc`.
 
-Superseded [`assets/hero-v3.png`](assets/hero-v3.png) (the original
-podcast-studio warm/blue hero) — v3 kept on disk for reference, not deleted.
+Superseded [`assets/hero-v4.png`](assets/hero-v4.png) (glasses had visible
+glare) and [`assets/hero-v3.png`](assets/hero-v3.png) (the original
+podcast-studio warm/blue hero) — both kept on disk for reference, not
+deleted.
 
 ---
 
