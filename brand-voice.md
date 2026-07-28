@@ -150,10 +150,25 @@ Primary: **urgency** — "move now or get left behind." Supporting: confidence (
 
 ## 15. HOOK STYLE
 
+**Statement hooks (default):**
 - "You don't need more content. You need a system."
 - "10 hours in CapCut. Down to 2 hours a week. Here's what changed."
 - "Most coaches don't have a content problem. They have a systems problem."
 - "I didn't become a coach to edit videos."
+
+**Question hooks (added 2026-07-28):** open with a direct question that
+puts the viewer's own stuck-ness or unspoken thought in their face — used
+for short-form video hooks (10s scripts), especially at the top of a
+funnel. Still direct, still urgency-driven, still ends on the single
+locked CTA. Pattern: question → reframe/answer in one line → CTA.
+- "Do you know the 3 mistakes keeping you stuck at ___?"
+- "Did you ever ask yourself how to actually scale your business?"
+- "What if I told you [result] without [the obstacle]?"
+
+Example full script (10s target, ~30 words at 3.0 words/sec):
+> "What if I told you that you could multiply your income without
+> multiplying your hours? That's not a promise. That's the system. Join
+> the AI Scale Engine — link in bio."
 
 ---
 
