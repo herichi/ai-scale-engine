@@ -111,12 +111,10 @@ text if captions are handled separately, etc.]
 - Model: `seedance_2_0`. Max clip duration is 15 seconds (hard limit) — a
   script must fit its target words/sec × duration, or split into multiple
   continuity-locked clips.
-- Native `generate_audio: true` produces a robotic, non-cloned voice. Every
-  clip needs a `voice_change` pass afterward using your cloned voice ID
-  (from `AVATAR_LOCK.md`) to sound like you, not the Seedance default.
+- Pass your voice reference file's media_id (from `VOICE_LOCK.md`) as an
+  `audio_references` media role directly in the same `generate_video` call
+  — Seedance 2.0 generates speech in your real voice in one pass, no
+  separate voice-swap step needed.
 - Always pass your locked hero image job id as the `image` media reference
   AND embed `<<<YOUR_AVATAR_ELEMENT_ID>>>` in the prompt text for the
   identity Element.
-- `voice_change` jobs can sit in `waiting` status for 10+ minutes before
-  moving to processing — this is normal, not necessarily stuck. Don't
-  panic-retry before ~10 minutes; retrying too early risks duplicate jobs.
