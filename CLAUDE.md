@@ -266,6 +266,17 @@ click. Still render the Skip button for the "no good answer, let me type"
 path — only the Continue click is removed by auto-advance, not the escape
 hatches (Skip / Other+textarea).
 
+## Video script workflow — HOOK.md (CONFIRMED, 2026-07-28)
+
+Whenever Mohamed asks for a video to be created (e.g. "make me a video
+about X", "create a hook for X"), before generating anything: read
+[`HOOK.md`](HOOK.md) and propose 3 different hook scripts for that topic,
+each using the locked hook pattern from `HOOK.md`. Show all 3, ending each
+on the locked CTA (from `offer.md` Stage 4). Wait for Mohamed to pick or
+approve one before generating any actual video — never generate straight
+from a request without this proposal step first, unless he explicitly says
+to skip it for one request.
+
 ## Reference file stack (may not all exist yet)
 
 `brand-voice.md` (exists), `funnel-map.md`, `AVATAR_LOCK.md`,
