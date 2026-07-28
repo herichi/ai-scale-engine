@@ -10,6 +10,24 @@ audio directly as an `audio_references` input during generation. Attach
 your voice file once, lock it in your project, and every future video
 generation call picks it up automatically.
 
+**What actually gets attached, and when — read this first:**
+
+- **The 5 template documents** (this tutorial, `GLOBAL_VIDEO_DIRECTION-
+  template.md`, `avatar-video-SKILL-template.md`, `AVATAR_LOCK-template.md`,
+  `VOICE_LOCK-template.md`) are things you **read and copy from once**,
+  across Modules 1–4, at your own pace. You never attach these to a chat
+  message. You copy each one into your own project as a real file
+  (dropping the `-template` suffix) and fill in your own details.
+- Once those files exist for real in your project, the `avatar-video`
+  skill **reads them off disk automatically** every time it generates
+  something — you never re-attach or re-paste them again.
+- **The ONE thing you actually attach in chat is your voice recording** —
+  and only once, right now, in this module. That's it.
+- **The main action of this module is: one prompt + your voice recording
+  attached.** Nothing else gets attached alongside it. The prompt below
+  handles uploading that file, saving it, and writing the real
+  `VOICE_LOCK.md` for you.
+
 <details>
 <summary>Note: what NOT to attach</summary>
 
