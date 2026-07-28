@@ -128,6 +128,18 @@ voiceover (Whisper) and burns timed captions automatically. Raw generated
 clips (pre-assembly) stay caption-free; the assembled/stitched final output
 is the one with captions.
 
+**Known gap (2026-07-28):** `explainer_video` requires at least 2 distinct
+clips per call — it's a stitching tool with captions as a side effect, not
+a standalone single-clip captioner. There is currently no tool available
+to burn captions onto one standalone clip that isn't being combined with
+another. **For a single, independent clip (not part of a multi-part
+series meant to be stitched together), skip Higgsfield captioning
+entirely and rely on the destination platform's own native auto-caption
+feature after upload** (TikTok/Instagram both offer this). Do not pair an
+unrelated clip with the standalone one just to satisfy the 2-item minimum
+— that produces a merged video the user didn't ask for, which is worse
+than no captions.
+
 ---
 
 ## NEGATIVE RULES (apply to every clip, no exceptions)
