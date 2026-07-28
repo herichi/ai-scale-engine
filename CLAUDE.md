@@ -154,22 +154,24 @@ plus another). These are NOT the locked reference — do not use them. They
 were left in place rather than deleted since deleting Higgsfield assets
 wasn't requested.
 
-## Standing rule — Voice Lock (CONFIRMED, 2026-07-27)
+## Standing rule — Voice Lock (CONFIRMED WORKING, 2026-07-27)
 
 Every avatar video generated for this project must use Mohamed's real
-cloned voice, never Seedance's native/robotic voice. Full detail in
+voice, never Seedance's generic native voice. Full detail in
 [`VOICE_LOCK.md`](VOICE_LOCK.md). Summary:
 
-- **Voice ID:** `865307a6-0146-4d08-a51e-17fe0d912da5` (`mohamed-voice-v2`,
-  `voice_type: element`)
-- **Pipeline (non-optional):** generate the video with `generate_audio:
-  true` (placeholder native audio for lip-sync timing), then immediately
-  run `voice_change` with the voice ID above to swap in his real voice.
-  There is no way to generate directly in the cloned voice — this two-step
-  swap is required every time.
-- `voice_change` has no cost preflight — check credit balance before/after
-  to see the actual charge. Jobs commonly sit in `waiting` status 10+
-  minutes before processing; this is normal, don't retry early.
+- **Locked voice reference:** uploaded audio file, media_id
+  `af1371ee-64cf-4e40-b7d8-13296b214095`
+  ([`assets/voice/voice-reference.mp3`](assets/voice/voice-reference.mp3)).
+- **Pipeline (confirmed, simpler than earlier assumed):** pass this
+  media_id directly as an `audio_references` media role alongside the
+  image reference in the `generate_video` call. Seedance 2.0 generates
+  speech in Mohamed's real voice in a single pass. **No `voice_change` step
+  needed** — an earlier two-step voice-clone-then-swap approach was
+  superseded once this was tested and confirmed working.
+- Do not pass a `create_voice`-style `voice_id` as `audio_references` — it
+  fails ("Audio input not found"). Only the raw uploaded audio file's
+  media_id works there.
 
 ## Publishing
 

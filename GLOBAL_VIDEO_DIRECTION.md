@@ -121,11 +121,12 @@ added later in editing. No text on screen during generation.
 **Captions (updated 2026-07-27 — reverses the original "no captions"
 rule):** every finished video in this series gets burned-in captions.
 Seedance 2.0 has no captioning capability at generation time, so captions
-are added as a separate assembly step: after voice_change, run the clip(s)
-through `explainer_video` with `subtitles: {font: ...}` — it transcribes the
-final voiceover (Whisper) and burns timed captions automatically. Raw
-generated clips (pre-assembly) stay caption-free; the assembled/stitched
-final output is the one with captions.
+are added as a separate assembly step: once the clip(s) are generated (see
+Voice below — no voice_change needed first), run them through
+`explainer_video` with `subtitles: {font: ...}` — it transcribes the final
+voiceover (Whisper) and burns timed captions automatically. Raw generated
+clips (pre-assembly) stay caption-free; the assembled/stitched final output
+is the one with captions.
 
 ---
 
@@ -146,13 +147,11 @@ if a specific script implies an open, toothy smile).
 - Model: `seedance_2_0`. Max clip duration is 15 seconds (hard limit) — a
   script must fit its target words/sec × duration, or it needs to be split
   into multiple continuity-locked clips.
-- Native `generate_audio: true` produces a robotic, non-cloned voice. Every
-  clip needs a `voice_change` pass afterward using the locked cloned voice
-  (`mohamed-voice`, id `801145c1-885e-433c-a6f4-b272acd10d38`) to sound like
-  Mohamed, not the Seedance default voice.
+- **Voice (CONFIRMED WORKING, 2026-07-27):** pass Mohamed's locked voice
+  reference file directly as `audio_references` alongside the image
+  reference — see `VOICE_LOCK.md` for the media_id. Seedance 2.0 generates
+  the avatar speaking in his real voice in one pass. No `voice_change` step
+  is needed; that earlier two-step approach is superseded.
 - Always pass the locked hero image job id as the `image` media reference
   AND embed `<<<9cf95684-c068-4807-bfa8-08aaa3add7c5>>>` in the prompt text
   for the identity Element.
-- `voice_change` jobs can sit in `waiting` status for 10+ minutes before
-  moving to processing — this is normal, not necessarily stuck. Don't panic-
-  retry before ~10 minutes; retrying too early risks duplicate jobs.

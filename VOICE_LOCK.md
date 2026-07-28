@@ -1,43 +1,52 @@
-# VOICE_LOCK — Mohamed's Cloned Voice
+# VOICE_LOCK — Mohamed's Voice Reference
 
-**Status: APPROVED / LOCKED (2026-07-26).**
+**Status: APPROVED / LOCKED (2026-07-27).**
 
-## Higgsfield Voice Reference
+## Higgsfield Voice Reference (CURRENT — updated 2026-07-27)
 
-**Voice name:** `mohamed-voice`
-**Voice ID:** `801145c1-885e-433c-a6f4-b272acd10d38`
-**Voice type:** `element`
-**Source audio:** `voice reference.mp3` (media_id `bcfd1cd7-54af-43c5-a399-44053701f057`)
+**Source audio:** [`assets/voice/voice-reference.mp3`](assets/voice/voice-reference.mp3)
+**Uploaded media_id:** `af1371ee-64cf-4e40-b7d8-13296b214095`
+**Media type:** `audio`
 
-**Status:** completed, `is_audio_eligible: true`
+## Usage rule (CONFIRMED WORKING, 2026-07-27)
 
-## Usage rule
+Every avatar video generated for this project must include this media_id
+as an `audio_references` media role directly in the `generate_video` call,
+alongside the avatar image reference:
 
-Every avatar video generated for this project must use Mohamed's real
-cloned voice, never the raw Seedance native voice.
+```
+medias: [
+  { value: "<hero image job id>", role: "image" },
+  { value: "af1371ee-64cf-4e40-b7d8-13296b214095", role: "audio" }
+]
+```
 
-Seedance 2.0's `generate_audio: true` produces its own native TTS voice —
-this is NOT Mohamed's voice, and has been confirmed to sound robotic. There
-is currently no way to make Seedance generate directly in the cloned voice
-at generation time; the correct pipeline is:
+Seedance 2.0 generates the avatar speaking in this real voice in a single
+pass. **No separate `voice_change` step is needed.** This was verified with
+a real test generation on 2026-07-27 (job `3fe128ed-ea95-44ca-b975-39af965d2bdc`)
+and confirmed by Mohamed: *"this is my voice."*
 
-1. Generate the video with `generate_audio: true` (native placeholder
-   voice, needed so the model has speech timing to lip-sync against).
-2. Immediately run `voice_change` on the resulting video with
-   `voice_id: 801145c1-885e-433c-a6f4-b272acd10d38`, `voice_type: element`.
-   This replaces the native voice with Mohamed's cloned voice while
-   preserving lip-sync timing.
+**Important — do not confuse this with Higgsfield's separate voice-cloning
+feature** (`create_voice` / `create_voice_from_confirmed_audio`, which
+returns a `voice_id`). Passing a `voice_id` as `audio_references` fails
+with "Audio input not found" — that role expects the raw uploaded audio
+*file's* media_id, not a cloned-voice identity. This project does not need
+the voice-cloning feature at all for this pipeline.
 
-This two-step process is already encoded as a required (non-optional) step
-in the `avatar-video` skill (`ThefounderStudio/.claude/skills/avatar-video/
-SKILL.md`, step 6) — this file exists so the voice lock is also documented
-as project knowledge, not just buried inside the skill's pipeline logic.
+<details>
+<summary>Superseded — earlier (incorrect) two-step voice_change approach, kept for history only</summary>
 
-**Cost note:** `voice_change` does not support the `get_cost` preflight
-that `generate_video`/`generate_image` support — its exact cost is only
-known after the job runs. Check workspace credit balance before and after
-to see the actual charge.
+An earlier attempt used Higgsfield's voice-cloning feature
+(`mohamed-voice-v2`, voice_id `865307a6-0146-4d08-a51e-17fe0d912da5`,
+cloned from this same source audio) combined with a required post-
+generation `voice_change` step, on the assumption that Seedance could not
+accept real voice audio directly. That assumption was wrong — testing
+confirmed `audio_references` works directly with the raw uploaded file.
+The voice_change step is no longer part of this project's pipeline. The
+clone (`mohamed-voice-v2`) still exists in the Higgsfield workspace but is
+unused.
 
-**Known behavior:** `voice_change` jobs commonly sit in `waiting` status
-for 10+ minutes before moving to processing. This is normal — don't retry
-before ~10 minutes have passed.
+</details>
+
+**Do not re-upload or ask Mohamed for this file again** unless he
+explicitly replaces the voice reference.
