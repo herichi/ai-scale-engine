@@ -26,8 +26,18 @@ Everything you need is below.
 
 ## What you need before you start
 
-1. **A clear photo of your face** (for your avatar identity) — a normal
-   selfie or photo is enough to start from.
+1. **Three avatar reference images** (not just one — this matters for
+   identity quality):
+   - **Hero Photo** — your primary facial identity and overall likeness. A
+     clear, forward-facing photo or a generated portrait.
+   - **Turnaround Sheet** — profile/side angles, head shape, proportions,
+     hairstyle, consistent across viewpoints. Can be generated from your
+     Hero Photo (front/left/right/back views on one sheet).
+   - **Close-Up Sheet** — skin detail, eyes, facial features, beard
+     pattern (if applicable), texture, asymmetry, realism. Also can be
+     generated from your Hero Photo.
+   If you only have one photo right now, that's fine to start — see the
+   note in Step 2 about generating the other two from it.
 2. **One voice recording** — 10 seconds to 3 minutes of clear speech,
    minimal background noise. A voice memo reading a paragraph out loud is
    enough.
@@ -67,14 +77,35 @@ prompt in the same message:
 > I'm attaching a photo of my face and a recording of my voice. Set up my
 > complete AI Twin system, in order:
 >
-> **Avatar identity:**
-> 1. Upload my attached photo to Higgsfield, then create a Higgsfield
->    Element from it (category: character) named `[YOUR-NAME]-avatar`. If
->    that name is taken, use whatever name Higgsfield assigns and tell me.
-> 2. Create `AVATAR_LOCK.md` in my project at `[YOUR-PROJECT-FOLDER]/`
->    documenting the Element name, Element ID, and the generation rule:
->    every avatar image or video for this project must embed
->    `<<<the Element ID>>>` in the generation prompt.
+> **Avatar identity — bundle 3 reference images as ONE Element:**
+> 1. Using my attached photo as the Hero Photo, generate two more reference
+>    assets from it: a Turnaround Sheet (front/left/right/back views on one
+>    sheet) and a Close-Up Sheet (eyes, skin texture, facial features in
+>    detail). Show me both for approval before continuing — do not proceed
+>    to step 2 until I approve them.
+> 2. Once approved, bundle all THREE images (Hero Photo + Turnaround Sheet
+>    + Close-Up Sheet) together into ONE reusable Higgsfield Element —
+>    do NOT save them as 3 separate Elements, this must be one identity
+>    bundle. Name it `[YOUR-NAME]-avatar`. If that exact name is taken,
+>    use whatever name Higgsfield assigns and tell me the actual name and
+>    ID — don't just assume the requested name was used.
+> 3. Create `AVATAR_LOCK.md` in my project at `[YOUR-PROJECT-FOLDER]/`
+>    documenting: the Element name, the Element ID, that it contains all 3
+>    bundled images, the identity priority (Hero Photo = primary likeness,
+>    Turnaround = angles/proportions/hairstyle, Close-Up = skin/eyes/
+>    texture/asymmetry — used together, no single image should override
+>    the others), the locked attributes (face shape, jawline, eyes, nose,
+>    hairstyle, age, ethnicity, skin tone, defining asymmetries — not to be
+>    altered without my explicit request), and the generation rule: every
+>    future avatar image or video must embed `<<<the Element ID>>>` in the
+>    generation prompt. Do not ask me to re-upload the Hero Photo,
+>    Turnaround Sheet, or Close-Up Sheet again unless I explicitly replace
+>    the avatar reference set, the Element becomes unavailable, or I
+>    intentionally create a new avatar version.
+>
+> If Higgsfield does not allow creating or saving the Element directly from
+> this environment, do not pretend it was created — tell me the exact
+> manual action I need to take instead, in the minimum number of steps.
 >
 > **Voice reference:**
 > 3. Upload my attached voice recording to Higgsfield as an audio file and
@@ -150,23 +181,39 @@ etc.) without re-running the whole setup prompt.
 **Element name:** [your-name]-avatar
 **Element ID:** [the Element id returned when created]
 **Category:** character
+**Status:** APPROVED / LOCKED
 
-**Identity Source:** [what's bundled in — e.g. one hero photo, or a
-hero + turnaround + close-up set]
+**Identity Source:** Validated Hero Photo + Turnaround Sheet + Close-Up
+Sheet, bundled together as ONE Higgsfield Element (not 3 separate ones).
 
 **Generation Rule:** Every avatar image or video generated for this
 project must reference this Element. Embed `<<<[your Element id]>>>`
-in the generation prompt.
+in the generation prompt — this auto-injects the bundled images and
+rewrites the reference to @[your-name]-avatar.
+
+## Identity priority (how the 3 bundled images are used together)
+
+- **Hero Photo** → primary facial identity and overall likeness
+- **Turnaround Sheet** → profile, side angles, head shape, proportions,
+  hairstyle, consistency across viewpoints
+- **Close-Up Sheet** → skin detail, eyes, facial features, beard pattern,
+  texture, asymmetry, realism
+
+Used together as one reference system — no single image should override
+the others in a way that damages identity consistency.
 
 ## Locked attributes
 
 Do not alter or reinterpret without explicit request:
-- face shape, jawline, eyes, nose, hairstyle, age, ethnicity, skin tone,
-  defining facial asymmetries, body proportions, glasses (if applicable)
+- face shape, jawline, eyes, nose, beard structure, hairstyle, age,
+  ethnicity, skin tone, defining facial asymmetries, body proportions,
+  glasses (if applicable)
 
 ## Source assets
 
-- [path to your locked hero image] — [resolution, aspect ratio]
+- [path to your Hero Photo] — [resolution, aspect ratio]
+- [Turnaround Sheet — job id if generated via Higgsfield]
+- [Close-Up Sheet — job id if generated via Higgsfield]
 ```
 
 ### 2. `VOICE_LOCK.md`
