@@ -97,6 +97,13 @@ directing avatar content, consider facial/voice/personality/wardrobe/
 lighting/framing/tone consistency together, not image generation in
 isolation.
 
+**Carousel/static-image copy (CONFIRMED, 2026-07-29):** default to the
+"Old Way / New Way" contrast format locked in `brand-voice.md` section
+15b whenever generating carousel or multi-slide static-image content —
+short mirrored contrast lines, no justification, ending on the locked
+CTA. Don't fall back to longer prose-style carousel copy unless Mohamed
+explicitly asks for a different format.
+
 ## Visual reference — APPROVED, see visual-reference.md
 
 The locked look for any generated image/video depicting Mohamed is in

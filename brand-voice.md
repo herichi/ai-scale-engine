@@ -172,6 +172,59 @@ Example full script (10s target, ~30 words at 3.0 words/sec):
 
 ---
 
+## 15b. CAROUSEL FORMAT — "Old Way / New Way" (added 2026-07-29)
+
+Locked format for static image carousels (Instagram/LinkedIn-style
+multi-slide posts). Distinct from video hooks — shorter, punchier,
+built for skimming, not spoken delivery.
+
+**Structure:** a stark before/after contrast in the same sentence
+structure, no explanation, no elaboration. Each line is a slide (or
+half a slide). Never justify the contrast — let it stand on its own.
+
+**Template:**
+```
+THE OLD WAY
+[one short line — trading time/effort/energy directly for a result]
+
+THE NEW WAY
+[one short line — same result, achieved via system/leverage instead]
+```
+
+**Rules:**
+- Each line is under 8 words. If it needs a second clause, it's too long.
+- The two lines must mirror each other structurally (same sentence
+  shape, swapped mechanism) — this is what makes the contrast land.
+- No adjectives, no hype words. State the mechanism plainly.
+- Never explain *why* the new way is better — the contrast does that
+  work. Adding justification weakens it.
+- Final slide is always the locked CTA, unchanged: "Join the AI Scale
+  Engine — link in bio."
+- Alternate single-beat version (no old/new contrast, for variety):
+  a one-line reframe of who wins today, ending on what they do
+  differently. E.g. "Coaches who win today don't work harder. They
+  leverage tools and systems to make more impact."
+
+**Validated examples:**
+> THE OLD WAY
+> Use your time and energy to be visible.
+>
+> THE NEW WAY
+> Build a system that stays visible for you.
+
+> THE OLD WAY
+> Trade your time for content.
+>
+> THE NEW WAY
+> Trade a system for your time back.
+
+**Visual pairing:** dark background (`#0a0a0a`) or a real photo with a
+dark gradient overlay for legibility, body text in ink (`#f5f1ea`),
+the key contrast word or the CTA highlighted in the locked orange accent
+(`#ff7a1a`). See `visual-reference.md` for the full brand color spec.
+
+---
+
 ## 16. CTA STYLE
 
 **Primary CTA (default, per the locked funnel — see `offer.md`):** single
