@@ -140,6 +140,22 @@ unrelated clip with the standalone one just to satisfy the 2-item minimum
 — that produces a merged video the user didn't ask for, which is worse
 than no captions.
 
+**Known gap #2 (2026-07-28) — TikTok's native auto-caption fails on
+Seedance audio:** confirmed on 2 separately published clips
+(`audio_references`-driven Seedance 2.0 generations) — TikTok's caption
+toggle greys out with "Voix non reconnue" / "Voice not recognized," so
+native auto-captioning does not work as a fallback for these clips despite
+the plan above. Root cause not confirmed (likely an audio encoding/format
+mismatch between Seedance's output track and TikTok's speech recognizer —
+not a content or language issue). **Workarounds, in order of effort:**
+1. Type captions in manually via TikTok's manual caption/text editor
+   (guaranteed to work, slower).
+2. Try Higgsfield's `explainer_video` (Whisper-based transcription) —
+   different engine than TikTok's, may succeed where TikTok's recognizer
+   fails, but requires pairing with a second clip (see gap #1 above).
+3. Instagram's native auto-caption has not yet been confirmed to have the
+   same issue — test there before assuming it also fails.
+
 ---
 
 ## NEGATIVE RULES (apply to every clip, no exceptions)
@@ -154,8 +170,18 @@ if a specific script implies an open, toothy smile).
 
 ---
 
-## Pipeline notes (technical, not creative — see the `avatar-video` skill)
+## Pipeline notes (technical, not creative — see `SEEDANCE.md` and the
+`avatar-video` skill)
 
+**Full prompting system (imported 2026-07-29):** [`SEEDANCE.md`](SEEDANCE.md)
+is the master technical prompting guide for Seedance generations in this
+project — adapted from an external Seedance Studio Prompting Guide for this
+project's actual MCP tool interface. Read it before building any
+`generate_video` prompt: it covers pacing math (2.7/4.5 words per sec),
+the hand-gesture bank, lean negative prompts, the "no cinematic" rule, and
+bug fixes for frozen hands/looping gestures/plasticky faces/identity drift.
+
+Quick summary (see `SEEDANCE.md` for full detail):
 - Model: `seedance_2_0`. Max clip duration is 15 seconds (hard limit) — a
   script must fit its target words/sec × duration, or it needs to be split
   into multiple continuity-locked clips.
@@ -163,7 +189,16 @@ if a specific script implies an open, toothy smile).
   reference file directly as `audio_references` alongside the image
   reference — see `VOICE_LOCK.md` for the media_id. Seedance 2.0 generates
   the avatar speaking in his real voice in one pass. No `voice_change` step
-  is needed; that earlier two-step approach is superseded.
+  is needed; that earlier two-step approach is superseded. Reference the
+  audio by function only ("lip-sync driven by the provided audio
+  reference") — never describe its texture in the prompt.
 - Always pass the locked hero image job id as the `image` media reference
   AND embed `<<<9cf95684-c068-4807-bfa8-08aaa3add7c5>>>` in the prompt text
-  for the identity Element.
+  for the identity Element. **Never use `@image_1`/`@audio_1`-style tags —
+  those are a Higgsfield web-UI convention, unconfirmed for this MCP
+  interface.**
+- Default pacing going forward: **2.7 words/sec (standard)** unless a hook
+  specifically needs the faster 4.5 words/sec dynamic pace. (Prior clips in
+  this project used ad-hoc 3.0/3.7 figures — those worked but weren't
+  validated against a reference; new clips should use the SEEDANCE.md
+  table.)
