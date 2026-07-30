@@ -86,10 +86,13 @@ gratitude.
 **Voice:** natural, warm, conversational, confident, slightly energetic.
 Never robotic, never overly polished, never "sales voice."
 
-**Delivery speed:** ~150–175 words per minute (~2.5–2.9 words/sec) as a
-general default. Allow short natural pauses. Do not rush important lines.
-(A specific clip may specify an exact words/sec target that overrides this
-default — always use the per-clip value when given.)
+**Delivery speed:** ~3.0 words/sec standard pace (updated 2026-07-30 to
+match `SEEDANCE.md`'s validated pacing table — supersedes the earlier
+2.5–2.9 wps range). Allow short natural pauses. Do not rush important
+lines. Use the faster 4.5 words/sec dynamic pace only for fast hooks, not
+this welcome series' default. (A specific clip may specify an exact
+words/sec target that overrides this default — always use the per-clip
+value when given.)
 
 **Facial performance:** natural smile at opening, genuine excitement on
 "AI Scale Engine," slight eyebrow movement on emphasis, friendly eye
@@ -166,7 +169,9 @@ dramatic cinematic acting. No gaming RGB. No neon wash. No plastic skin. No
 beauty filter. No facial identity drift. No wardrobe changes. No studio
 changes. No text. No captions. **No teeth showing** (smiles stay closed-
 mouth/subtle per this rule — flagged as worth double-checking with Mohamed
-if a specific script implies an open, toothy smile).
+if a specific script implies an open, toothy smile). **No rings or jewelry
+on the hands, no wedding band** (added 2026-07-30 — see Pipeline notes for
+the incident this fixes).
 
 ---
 
@@ -197,8 +202,18 @@ Quick summary (see `SEEDANCE.md` for full detail):
   for the identity Element. **Never use `@image_1`/`@audio_1`-style tags —
   those are a Higgsfield web-UI convention, unconfirmed for this MCP
   interface.**
-- Default pacing going forward: **2.7 words/sec (standard)** unless a hook
-  specifically needs the faster 4.5 words/sec dynamic pace. (Prior clips in
-  this project used ad-hoc 3.0/3.7 figures — those worked but weren't
-  validated against a reference; new clips should use the SEEDANCE.md
-  table.)
+- Default pacing (updated 2026-07-30): **3.0 words/sec (standard)** unless
+  a hook specifically needs the faster 4.5 words/sec dynamic pace.
+- **Gestures stay restrained** per this project's PERFORMANCE section
+  above — a one-off request for "more dynamic/energetic" gestures or
+  camera movement (e.g. a stylized departure from the locked studio) is a
+  deliberate per-clip exception, never the new default. Confirmed
+  2026-07-30 after a test departure (different set, moving camera,
+  energetic gestures) produced a noticeably worse result than the locked
+  baseline — the locked studio/restrained-gesture approach is the one to
+  keep using.
+- **A ring/jewelry hallucinated into one generation with nothing in the
+  prompt or reference suggesting it (2026-07-30).** Root cause
+  unconfirmed. Standing fix: negative prompt now always includes "no
+  rings or jewelry on the hands, no wedding band" (see NEGATIVE RULES
+  above and `SEEDANCE.md`'s bug-fix table).
