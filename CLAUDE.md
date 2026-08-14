@@ -39,11 +39,20 @@ lives. Fragmented storage defeats the point of a second brain.
 this project folder — because skills are discovered from `.claude/skills/`
 at the session's working-directory root, and nesting it inside this project
 subfolder risked it not being auto-discovered. All the skill's actual
-creative/generation content (GLOBAL_VIDEO_DIRECTION.md,
-visual-reference.md, AVATAR_LOCK.md) still lives inside this project folder
-— the skill file itself only orchestrates them. Don't move this file back
-into the project folder without re-confirming discovery still works from
-wherever sessions are run.
+creative/generation content (SEEDANCE.md, visual-reference.md,
+AVATAR_LOCK.md) still lives inside this project folder — the skill file
+itself only orchestrates them. Don't move this file back into the project
+folder without re-confirming discovery still works from wherever sessions
+are run.
+
+**SEEDANCE.md is the sole creative + technical bible for video generation
+(2026-07-30):** `GLOBAL_VIDEO_DIRECTION.md` was merged into
+[`SEEDANCE.md`](SEEDANCE.md) in full (concept, identity, studio, lighting,
+camera, performance, continuity, negative rules, captions/audio pipeline,
+pacing, gesture bank, prompt template, bug fixes) and then deleted. Do not
+recreate `GLOBAL_VIDEO_DIRECTION.md` or split these rules back into a
+second file — every video generation in this project reads only
+`SEEDANCE.md`.
 
 **Corollary — don't import unconfirmed outside files as authoritative
 context.** Files found elsewhere on disk (e.g. `~/coaching-business/
@@ -103,6 +112,92 @@ isolation.
 short mirrored contrast lines, no justification, ending on the locked
 CTA. Don't fall back to longer prose-style carousel copy unless Mohamed
 explicitly asks for a different format.
+
+## Brand Kit — see BRAND_KIT.md (added 2026-07-30)
+
+[`BRAND_KIT.md`](BRAND_KIT.md) is the standing reference for the brand's
+**visual and legal identity** — logo, color palette, typography, reusable
+templates (carousel/lower-third/thumbnail), brand documents, and policy/
+legal text. `brand-voice.md` covers how the brand talks; `BRAND_KIT.md`
+covers how it looks and what it's allowed to promise.
+
+**Read `BRAND_KIT.md` before any carousel or video generation that needs
+brand colors, typography, logo placement, or policy/compliance text** —
+same "define once, reuse everywhere" principle as `AVATAR_LOCK.md` and
+`VOICE_LOCK.md`. The locked color palette (`#0a0a0a` / `#f5f1ea` /
+`#ff7a1a` / `rgba(245,241,234,0.12)`) is mirrored there from this file's
+existing Brand colors section below — `BRAND_KIT.md` is now the fuller
+reference; this file's Brand colors section stays as the quick-lookup
+summary for widgets.
+
+## Standing rule — Closing outro video (CONFIRMED, 2026-08-01)
+
+Every video created for this project must end with the locked closing
+outro: **"Build the Engine / Join us now! / AI Scale Engine Community"**
+on a black background with an orange flame-burst motion graphic —
+matches the locked brand palette (`#0a0a0a` background, `#ff7a1a` accent).
+
+- **Reference files:**
+  [`assets/video/closing-outro.mp4`](assets/video/closing-outro.mp4)
+  (source, 1920x1080, 5.5s) and
+  [`assets/video/closing-outro-9x16.mp4`](assets/video/closing-outro-9x16.mp4)
+  (letterboxed to 1080x1920 for vertical/Reels-format videos, black bars
+  colored `#0a0a0a` to match the brand background rather than pure black).
+- **Usage rule:** append this closing clip as the final ~5 seconds of
+  every video produced in this project (Remotion motion-graphics videos,
+  Seedance avatar videos once stitched via `explainer_video`, any future
+  video asset) — after the main content, before the video ends. Use the
+  9:16 version for vertical/Reels/TikTok content and the source 16:9
+  version only if a horizontal video is explicitly requested.
+- Do not regenerate or restyle this closing clip without Mohamed
+  explicitly asking for a new version — treat it as locked, the same way
+  `AVATAR_LOCK.md`/`VOICE_LOCK.md` lock identity and voice.
+
+## Standing rule — CapCut reference edit (CONFIRMED, 2026-08-02)
+
+Mohamed took the AI Content Machine video (the first Remotion motion-
+graphics video built in this project) into CapCut and added polish before
+posting. That edited file is locked as the **motion/sound reference** for
+every future text-based video in this project:
+[`assets/video/reference-capcut-edit.mp4`](assets/video/reference-capcut-edit.mp4)
+(20.5s, 1080x1920).
+
+**Confirmed via frame-by-frame + audio analysis (2026-08-02) — three
+distinct additions, not a full-video restyle:**
+
+1. **Background music, louder throughout.** The original Remotion render
+   faded the locked Pixabay track (`assets/audio/closing-bg-music.mp3`)
+   down to a 0.32 peak volume. The CapCut version keeps it audibly louder
+   across the whole runtime (confirmed via RMS levels around -10 to -20dB
+   vs. near-silent in the original's quiet sections). **Match this
+   loudness in future renders** — don't default back to the quieter 0.32
+   peak.
+2. **RGB channel-split / glitch effect on the punch-word beat.** Applied
+   to the "AUTOMATICALLY." scene specifically (the single-word punch
+   beat) — a chromatic-aberration-style red/green/blue offset glitch,
+   landing right on the beat for emphasis. Not applied anywhere else in
+   the video (confirmed the hook and checklist scenes are clean, untouched
+   frames). **Apply this glitch effect to the punch-word beat of future
+   videos that have one** — it's a reusable stylistic signature, not a
+   one-off.
+3. **Starfield-particle overlay + subtle letterbox, applied to the closing
+   outro only.** A moving starfield/particle layer added on top of the
+   locked flame-burst outro, plus thin cinematic letterbox bars during
+   that segment. Confirmed via frame checks that this is scoped to the
+   outro portion (~15s onward) — the main body of the video (hook, reveal,
+   checklist, punch) is untouched. **Apply this same starfield+letterbox
+   treatment to the outro of future videos** — it's now part of the locked
+   outro look, layered on top of (not replacing) the existing flame-burst/
+   text content from the "Closing outro video" rule above.
+
+**Usage rule:** when building a new Remotion text/motion-graphics video in
+this project, replicate these three effects at build time (music loudness,
+punch-word glitch, outro starfield+letterbox) rather than relying on a
+manual CapCut pass afterward — the goal is that Remotion's own output
+already matches this reference, so CapCut becomes optional polish, not a
+required step. Read this rule and inspect
+`assets/video/reference-capcut-edit.mp4` before finishing any new
+text-based video.
 
 ## Visual reference — APPROVED, see visual-reference.md
 
@@ -283,6 +378,92 @@ on the locked CTA (from `offer.md` Stage 4). Wait for Mohamed to pick or
 approve one before generating any actual video — never generate straight
 from a request without this proposal step first, unless he explicitly says
 to skip it for one request.
+
+## Standing rule — n8n + Claude handoff for automated video jobs (CONFIRMED, 2026-08-02)
+
+An n8n workflow automates Hacker News research → GPT script-writing →
+avatar video → Blotato publish once a day. The video-generation leg
+**cannot call Higgsfield's public REST API directly** — verified against
+the real docs at `docs.higgsfield.ai`: the public Cloud API
+(`platform.higgsfield.ai`) only accepts a plain `image_url` + `prompt` for
+Seedance, with no documented Element/identity-lock or voice-reference
+parameters. Those features (the `<<<element_id>>>` lock and
+`audio_references` voice trick this project depends on) are only
+available through the Higgsfield MCP tool used inside Claude Code.
+
+**The workflow file:**
+[`assets/n8n/3_hackernews_to_ai_clone_videos_HIGGSFIELD.json`](assets/n8n/3_hackernews_to_ai_clone_videos_HIGGSFIELD.json)
+— import directly into n8n. Adapted from the original public "3 Hackernews
+to AI Clone Videos" template (which used HeyGen); this version keeps the
+HN research, GPT scripting, and all Blotato publish nodes unchanged, and
+replaces only the HeyGen-specific video-generation nodes with a Google
+Sheets handoff to Claude.
+
+**How the handoff works:**
+1. `Setup Higgsfield` node builds a job record: the GPT-written script,
+   the locked Element ID (`9cf95684-c068-4807-bfa8-08aaa3add7c5`, from
+   `AVATAR_LOCK.md`), the locked voice media_id
+   (`af1371ee-64cf-4e40-b7d8-13296b214095`, from `VOICE_LOCK.md`), and the
+   locked brand colors (from `BRAND_KIT.md`).
+2. `Write Job to Sheet (for Claude)` appends a row (`job_id`, `script`,
+   Element ID, voice media_id, `status: pending`, empty `video_url`) to a
+   Google Sheet.
+3. **Manual step (not yet automated):** open this Claude Code project and
+   ask Claude to process pending jobs — e.g. "check the Google Sheet for
+   a pending video job and generate it." Claude reads `AVATAR_LOCK.md`,
+   `VOICE_LOCK.md`, `SEEDANCE.md`, and `BRAND_KIT.md` automatically,
+   generates the video via the Higgsfield MCP `generate_video` tool using
+   the locked Element and voice, appends the locked closing outro (per
+   the "Closing outro video" rule above), and writes the finished
+   `video_url` + `status: done` back into the same sheet row.
+4. `Wait` → `Check Sheet for Video URL` → `If1` loops in n8n until
+   `status` reads `done`, then continues to `Upload media` and the
+   unchanged Blotato publish fan-out.
+
+**Setup required before first run (see the workflow's own sticky notes for
+detail):** a Google Sheet with columns `job_id, script,
+higgsfield_element_id, higgsfield_voice_media_id, status, video_url,
+requested_at`, a Google Sheets credential in n8n, and the Sheet ID pasted
+into both Sheets nodes (`Write Job to Sheet` and `Check Sheet for Video
+URL`) — these are placeholder values in the JSON and must be filled in.
+
+**This is a semi-automated bridge, not a fully hands-off pipeline** — step
+3 requires a human to run Claude Code against the pending job. Full
+automation would need a hosted Claude Agent SDK/API endpoint n8n can call
+directly instead of a human-triggered session; that's a real deployment
+project, not something buildable from a chat session, and hasn't been
+requested yet.
+
+## Standing rule — Daily content pipeline skill (CONFIRMED, 2026-08-14)
+
+The `daily-content-pipeline` skill
+(`ThefounderStudio/.claude/skills/daily-content-pipeline/SKILL.md`) runs
+the full daily loop entirely inside Claude, with no n8n involvement:
+niche research → 3 hook options → avatar video (via the existing
+`avatar-video` skill, locked Element + voice) → locked closing outro →
+**stop for approval** → publish to Instagram/TikTok via Blotato.
+
+**Approval gate is mandatory.** The pipeline never publishes on its own,
+including on scheduled/unattended runs. It stops after the video is
+rendered and presents it for Mohamed's yes. This is a deliberate carve-out
+from the "Publishing" section's no-blanket-approval default — that rule is
+about not blocking on approval-for-approval's-sake, not about auto-posting
+avatar video to live brand accounts. Confirmed with Mohamed 2026-08-14
+("je veux bien qu'il s'arrête pour valider la vidéo avant l'envoi").
+
+**Why this exists alongside the n8n handoff rule below:** the n8n workflow
+was built when the assumption was that automation had to live outside
+Claude. It doesn't — the Higgsfield MCP tools, the `avatar-video` skill,
+and the Blotato posting tools are all callable directly from a Claude
+session, so the whole pipeline runs in one place with the identity locks
+intact. n8n's remaining value is as a **teachable artifact for students**
+(who won't have Claude Code + MCP), not as Mohamed's own production path.
+
+**Known gap:** scheduled cloud agents (`/schedule`) run in Anthropic's
+cloud and cannot reach local project files or local MCP servers. To run
+this pipeline unattended, use a local cron on Mohamed's Mac
+(`claude -p "run the daily content pipeline"`), which keeps file and MCP
+access. Don't promise cloud-scheduled runs without solving that first.
 
 ## Reference file stack (may not all exist yet)
 

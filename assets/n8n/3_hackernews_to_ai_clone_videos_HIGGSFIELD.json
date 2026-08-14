@@ -1,0 +1,1012 @@
+{
+  "name": "3 Hackernews to AI Clone Videos (Higgsfield + Claude)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-2208, 976],
+      "id": "6a11e28b-f9be-40a5-aa6f-1f3f6f2ddcfb",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "# INSTRUCTIONS\n\nPerform the following tasks, in order:\n\n1. Fetch the top 10 stories from Hacker News from the past 24 hours related to AI or LLMs. \n\n2. Select the top story that is most likely to go viral on social media. \n\n3. Fetch the article and Hacker News comments.\n\n4. Create a 20-second monologue script for an AI avatar video, following these guidelines:\n   - The script should be approximately 30 seconds when spoken aloud.\n   - Include lots of details and statistics from the article.\n   - Use 6th grade reading level.\n   - Balanced viewpoint.\n   - Punctuations indicate pauses, but we want to minimize unnatural pauses, so only use a comma for punctuation.\n   - Do not use any commas in the first 2 sentences, and use them sparingly in the rest of the script.\n\n5. Update the script's first sentence to use sensational viral hooks, tailored to the content, that grab the viewer's attention.\n\n6. Replace the last sentence with: \"Hit follow to stay ahead in AI!\"\n\n# OUTPUT FORMAT\n\nONLY output the exact video script. Do not output anything else. NEVER include intermediate thoughts, notes, or formatting.",
+        "options": {
+          "returnIntermediateSteps": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [-2000, 976],
+      "id": "1e92228c-ccdf-4fac-9909-5bce890b2d03",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "articleId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Article_ID', ``, 'string') }}",
+        "additionalFields": {
+          "includeComments": true
+        }
+      },
+      "type": "n8n-nodes-base.hackerNewsTool",
+      "typeVersion": 1,
+      "position": [-1776, 1168],
+      "id": "b07d7df9-d3e5-485e-b1fe-2933ca644767",
+      "name": "Fetch HN Article"
+    },
+    {
+      "parameters": {
+        "resource": "all",
+        "additionalFields": {
+          "keyword": "AI",
+          "tags": ["front_page"]
+        }
+      },
+      "type": "n8n-nodes-base.hackerNewsTool",
+      "typeVersion": 1,
+      "position": [-1920, 1168],
+      "id": "010cbe03-3bbf-4938-badd-fedcd122a72b",
+      "name": "Fetch HN Front Page"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [-2064, 1168],
+      "id": "be213085-d8cb-4491-b66f-bddb19b27b03",
+      "name": "Write Script",
+      "credentials": {
+        "openAiApi": {
+          "id": "nN3d2hW6JDmQL1j8",
+          "name": "[S BRAND] OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# EXAMPLE\n\n<example>\nMany people have recently asked me about ask engine optimization, which is all about optimizing your website and existing content, so it can be pulled into ChatGPT and other generative AI tools. Consider that generative AI tools tend to be more conversational in nature and have a Q&A type format, so search engines will want to pull in snippets that concisely answer a user’s question.- what is ask engine optimization in the age of AI?- How does traditional SEO compare to ask engine optimization today?- top tips and tricks to get started with ask engine optimization?\n\n#ai #askengineoptimization #chatgpt #seo\n</example>\n\n# CONTEXT\n\nInfer the topic from the sources provided.\n\n# WRITING STYLE\n\nHere’s how you always write:\n\n<writing_style>\n\n- Your writing style is spartan and informative.\n- Use clear, simple language.\n- Employ short, impactful sentences.\n- Use active voice; avoid passive voice.\n- Focus on practical, actionable insights.\n- Incorporate data or statistics to support claims when possible.\n- Use \"\"\"\"\"\"\"\"you\"\"\"\"\"\"\"\" and \"\"\"\"\"\"\"\"your\"\"\"\"\"\"\"\" to directly address the reader.\n- Avoid metaphors and clichés.\n- Avoid generalizations.\n- Do not include common setup language in any sentence, including: in conclusion, in closing, etc.\n- Do not output warnings or notes—just the output requested.\n- Do not use hashtags.\n- Do not use semicolons.\n- Do not use emojis.\n- Do not use asterisks.\n- Do not use adjectives and adverbs.\n- Do NOT use these words:\n\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"can, may, just, that, very, really, literally, actually, certainly, probably, basically, could, maybe, delve, embark, enlightening, esteemed, shed light, craft, crafting, imagine, realm, game-changer, unlock, discover, skyrocket, abyss, you're not alone, in a world where, revolutionize, disruptive, utilize, utilizing, dive deep, tapestry, illuminate, unveil, pivotal, enrich, intricate, elucidate, hence, furthermore, realm, however, harness, exciting, groundbreaking, cutting-edge, remarkable, it. remains to be seen, glimpse into, navigating, landscape, stark, testament, in summary, in conclusion, moreover, boost, bustling, opened up, powerful, inquiries, ever-evolving\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\n</writing_style>\n\n# PLANNING\n\nYour goal is to write a 50-word video caption based on the provided source.\n\n1. Analyze the provided sources thoroughly.\n2. Study the <example> post carefully. You will be asked to replicate their:\n    - Overall structure.\n    - Tone and voice.\n    - Formatting (including line breaks and spacing).\n    - Length (aim for a similarly detailed post).\n    - Absence of emojis.\n    - Max 5 relevant hashtags.\n    - Emotional resonance.\n\n# OUTPUT\nFollow the GUIDELINES below to write the post. Use your analysis from step 1 and step 2. Use the provided sources as the foundation for your post, expanding on it significantly while maintaining the style and structure of the examples provided from step 2. You MUST use information from the provided sources. Make sure you adhere to your <writing_style>.\n\n<guidelines>\nThe description should be structured as follows:\n1. Start with 1 paragraph summarizing the source\n2. Newline, followed by 3 bullet points of questions that a viewer might ask on a search engine about the source\n3. Newline, followed by these hashtags: #ai #artificialintelligence #ainews #aiscaleengine #aiavatar\n</guidelines>\n\nTake a deep breath and take it step-by-step!\n\n# INPUT\nUse the following information sources:\n<sources>\n{{ $json.output }}\n</sources>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [-1648, 848],
+      "id": "c02ffa4b-6883-401a-b818-ad77c9a2c097",
+      "name": "Write Long Caption",
+      "credentials": {
+        "openAiApi": {
+          "id": "nN3d2hW6JDmQL1j8",
+          "name": "[S BRAND] OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Write a 1 viral sentence, max 90 characters, summarizing the video content, use 6th grade language, balanced neutral perspective, no emojis:\n\n<content>\n{{ $json.message.content }}\n</content>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [-1648, 1088],
+      "id": "816135c2-859b-4e45-a57e-60ffd00d0f44",
+      "name": "Write Short Caption",
+      "credentials": {
+        "openAiApi": {
+          "id": "nN3d2hW6JDmQL1j8",
+          "name": "[S BRAND] OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"job_id\": \"{{ $now.toMillis() }}-{{ Math.random().toString(36).slice(2,8) }}\",\n  \"higgsfield_element_id\": \"9cf95684-c068-4807-bfa8-08aaa3add7c5\",\n  \"higgsfield_element_name\": \"mohamed-avatar-2\",\n  \"higgsfield_voice_media_id\": \"af1371ee-64cf-4e40-b7d8-13296b214095\",\n  \"brand_colors\": {\n    \"bg\": \"#0a0a0a\",\n    \"ink\": \"#f5f1ea\",\n    \"accent\": \"#ff7a1a\",\n    \"line\": \"rgba(245, 241, 234, 0.12)\"\n  },\n  \"closing_outro_required\": true,\n  \"closing_outro_note\": \"Append assets/video/closing-outro-9x16.mp4 (Build the Engine / Join us now! / AI Scale Engine Community) as the final ~5s, per CLAUDE.md standing rule.\",\n  \"script\": {{ $('AI Agent').item.json.output.toJsonString() }},\n  \"status\": \"pending\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-1168, 976],
+      "id": "fa8709dd-4c1d-493a-8bf4-6aa72f397d58",
+      "name": "Setup Higgsfield"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1uxmm40zOmgDp1hPlmdgoEvfasVi1RGob4Rh9dtKKkEI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "job_id": "={{ $json.job_id }}",
+            "script": "={{ $json.script }}",
+            "higgsfield_element_id": "={{ $json.higgsfield_element_id }}",
+            "higgsfield_voice_media_id": "={{ $json.higgsfield_voice_media_id }}",
+            "status": "pending",
+            "video_url": "",
+            "requested_at": "={{ $now.toISO() }}"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [-944, 976],
+      "id": "b1a6f8a0-1e9d-4c1f-8b2a-3d5e6f7a8b90",
+      "name": "Write Job to Sheet (for Claude)",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PASTE_YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [-720, 976],
+      "id": "ddd0c2a4-1f16-4339-bf65-9f257d7c1b3a",
+      "name": "Wait",
+      "webhookId": "d9404622-0a06-4a65-959e-badd4fd87465",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "lookup",
+        "documentId": {
+          "__rl": true,
+          "value": "1uxmm40zOmgDp1hPlmdgoEvfasVi1RGob4Rh9dtKKkEI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "lookupColumn": "job_id",
+        "lookupValue": "={{ $('Setup Higgsfield').item.json.job_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [-496, 976],
+      "id": "c2b7f9a1-2e0e-5d2f-9c3b-4e6f7a8b9c01",
+      "name": "Check Sheet for Video URL",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PASTE_YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e511deb8-8e4c-45db-aa35-18f43a0552b6",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "done",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-272, 976],
+      "id": "d03c697b-b292-4ee6-8487-9197765b996d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "mediaUrl": "={{ $json.video_url }}"
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [128, 976],
+      "id": "bfcc7bde-fab8-4a21-84f1-da461650fce8",
+      "name": "Upload media",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Research Tech News using Hackernews\n\n- This template uses the free Hackernews tool to fetch trending tech news\n- If your niche is outside of tech, I suggest replacing the Hackernews tool with SerpAPI tool, which allows your AI agent to use Google search to find recent industry news",
+        "height": 868,
+        "width": 940,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-2272, 560],
+      "id": "e16e769d-897d-4b86-9d5e-eee9f933665a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Create AI Clone Video Using HIGGSFIELD + CLAUDE\n\nThis leg no longer calls a public video-generation REST API directly. Higgsfield's public Cloud API (platform.higgsfield.ai) does NOT support the locked avatar Element or voice-reference system this brand uses — those only exist via the Higgsfield MCP tool used inside Claude Code.\n\n**How this works instead:**\n1. \"Setup Higgsfield\" builds a job record (script + locked Element ID `9cf95684-c068-4807-bfa8-08aaa3add7c5` + locked voice media_id `af1371ee-64cf-4e40-b7d8-13296b214095` + brand colors).\n2. \"Write Job to Sheet\" appends a pending row to a Google Sheet.\n3. Open the ai-scale-engine-mo-test-3 Claude Code project. Tell Claude: \"check the Google Sheet for a pending video job and generate it\" (or paste the row). Claude reads AVATAR_LOCK.md / VOICE_LOCK.md / SEEDANCE.md / BRAND_KIT.md automatically, generates the video via the Higgsfield MCP generate_video tool with the locked Element + voice, appends the locked closing outro, and writes the finished video_url + status=done back into the same sheet row.\n4. n8n's \"Wait\" + \"Check Sheet for Video URL\" loop polls until status=done, then continues to Blotato publishing exactly as before.\n\nSee CLAUDE.md's \"Standing rule— n8n + Claude handoff\" for the full setup notes.",
+        "height": 868,
+        "width": 1536,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-1232, 560],
+      "id": "275651b8-98b0-4b66-b355-f0e682f3dc1f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Setup 1\n\nFill out \"Setup Higgsfield\" (already has your locked Element ID + voice media_id) and \"Write Job to Sheet\" / \"Check Sheet for Video URL\" (paste your Google Sheet ID + credential)",
+        "height": 116,
+        "width": 260,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-1216, 1136],
+      "id": "77edad13-2167-4fd4-9526-3073f28c13ec",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# Loop until Claude finishes the job\n\nWait 2 min → check sheet → if status still pending, loop back to Wait. Increase the Wait duration if Claude/Higgsfield generations regularly take longer than a few polling cycles.",
+        "height": 140,
+        "width": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-720, 1136],
+      "id": "f1a2b3c4-5d6e-7f80-9a1b-2c3d4e5f6a70",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "# FULL TUTORIAL\n\n## Description\n\nThis fully automated AI Avatar Social Media system creates talking head AI clone videos of Mohamed's LOCKED Higgsfield avatar (mohamed-avatar-2), WITHOUT having to film or edit yourself. It combines n8n, an AI research/scripting agent, a Google Sheets handoff to Claude Code (which drives the Higgsfield MCP for identity-locked, voice-locked generation, plus the locked brand kit and closing outro), and Blotato to research, create, and distribute talking head AI clone videos to every social media platform every single day.\n\n## Overview\n\n**1. Trigger: Schedule**\n- Configured to run once daily at 10am\n\n**2. AI News Research**\n- Research viral news from tech-focused forum, Hackernews\n- Fetch the selected news item, plus discussion comments\n\n**3. AI Writer**\n- AI writes 30-second monologue script\n- AI writes short + long video captions\n\n**4. Handoff to Claude for Avatar Video**\n- Build a job record with the script + locked Higgsfield Element ID + locked voice media_id + brand colors\n- Write the job to a Google Sheet\n- Open the ai-scale-engine-mo-test-3 Claude Code project and ask Claude to process pending jobs — Claude reads AVATAR_LOCK.md, VOICE_LOCK.md, SEEDANCE.md, and BRAND_KIT.md automatically, generates the identity+voice-locked video via the Higgsfield MCP generate_video tool, appends the locked closing outro, and writes the finished video_url + status=done back to the sheet\n\n**5. Get Video**\n- Wait/poll the sheet until status=done\n- Upload the finished video to Blotato\n\n**6. Publish to Social Media via Blotato**\n- Connect your Blotato account\n- Choose your social accounts\n- Either post immediately or schedule for later",
+        "height": 912,
+        "width": 624,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [-2112, -384],
+      "typeVersion": 1,
+      "id": "961b0e78-de4a-45c3-be55-e8d106cac5ef",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Error Report\n\n👉 View run logs and results.\n\n👉 API Dashboard:\n https://my.blotato.com/api-dashboard",
+        "height": 192,
+        "width": 288,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [1008, 1216],
+      "typeVersion": 1,
+      "id": "23f0da73-c323-48e4-8fcc-4de74ce42bb0",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "numberInputs": 9
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [1088, 832],
+      "id": "d878f642-f42c-4216-8a99-5c10e2a2f6fb",
+      "name": "Error Report",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "content": "# Post Everywhere\n\n## IMPORTANT\nDo not post the same image/video over and over again, otherwise it will be flagged as spam. Make sure to disclose AI generated content if you're using avatars.\n\n👉  **Blotato API Docs**: https://help.blotato.com/api\n✅  **Troubleshoot Errors**: https://my.blotato.com/api-dashboard\n📷  **Media Requirements**: https://help.blotato.com/api/media\n🛠️  **Contact help**: log into blotato > click support button in bottom right corner",
+        "height": 1968,
+        "width": 912,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [416, -144],
+      "id": "4de8f48b-156e-47fc-b72b-e5b6ee9b6bfa",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# Platform Specific Notes\n\n## Tiktok\nYou can post images, videos, and slideshows. Your Tiktok account must be warmed up before using Blotato, otherwise you'll get low views. [Follow this warm up guide](https://help.blotato.com/platforms/tiktok/brand-new-accounts). \n\nCheck out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/tiktok\n\n## Linkedin\nYou can post text, images, videos, and PDF carousels. Check out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/linkedin\n\n## Facebook\nYou can post text, images, regular videos, and reels. Check out best practices and troubleshooting FAQs\nhttps://help.blotato.com/platforms/facebook\n\n## Instagram\nYou can post images, reels, stories, and slideshows. Check out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/instagram\n\n## Twitter\nYou can post text, images, and videos. You can post a long-form thread by clicking \"Show Advanced Settings\". Check out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/twitter\n\n## Threads\nYou can post text, images, and videos. You can post a long-form thread by clicking \"Show Advanced Settings\". Check out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/threads\n\n## Bluesky\nYou can post text, images, and videos. You can post a long-form thread by clicking \"Show Advanced Settings\". Check out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/bluesky\n\n## Youtube\nYou can post Youtube shorts and long-form videos. You don't need to do anything. Youtube automatically posts Shorts if your video is <2 minutes and 9:16 aspect ratio.\n\nBrand new Youtube accounts are limited to a few posts per day via API. You can still upload manually through Youtube website. This restriction is directly from Youtube and is gradually lifted as you post consistently.\n\nCheck out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/youtube\n\n## Pinterest\nYou can post image and video pins. You must warm up your Pinterest account by posting a few pins per day, gradually ramping up.\n\nHow to Get Your Pinterest Board ID:\nGo to Blotato, create a Pinterest post, click Publish, and you'll see your board IDs. Copy board ID to here.\n\nCheck out best practices and troubleshooting FAQs:\nhttps://help.blotato.com/platforms/pinterest\n\n## Need More Help?\n\nLog into Blotato.com\nClick support button in bottom right corner.\nSabrina Ramonov🍄 replies within 24 hours most weekdays.",
+        "height": 1632,
+        "width": 608,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [1408, 64],
+      "id": "f8a07be4-6e33-44c9-a892-b3c519dfe071",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "# Setup 2\n1. Open each node\n2. Select your social account\n3. Deactivate platforms you don't need\n3. 👉 **You don't need to do anything else!**",
+        "height": 176,
+        "width": 320,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [544, 144],
+      "id": "58203d91-e008-4af9-99a1-2997f6f09b8b",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "# Setup\n\n- Sign up for Blotato.com\n- Generate Blotato API Key by going to Settings > API > Generate API Key (paid feature only)\n- If you're using n8n, ensure you have \"Verified Community Nodes\" enabled in your n8n Admin Panel. Then, install \"Blotato\" verified community node.\n- Create Blotato credential\n- Create a Google Sheet with columns: job_id, script, higgsfield_element_id, higgsfield_voice_media_id, status, video_url, requested_at\n- Connect a Google Sheets credential in n8n, paste the Sheet ID into \"Write Job to Sheet\" and \"Check Sheet for Video URL\"\n- Your Higgsfield Element ID and voice media_id are already filled into \"Setup Higgsfield\" (locked, from AVATAR_LOCK.md / VOICE_LOCK.md in the ai-scale-engine-mo-test-3 Claude Code project)\n- Complete the 2 setup steps in BROWN sticky notes in this template\n- To actually generate videos: open the ai-scale-engine-mo-test-3 Claude Code project whenever a job is pending and ask Claude to process it (see Sticky Note1 for detail)",
+        "height": 460,
+        "width": 784,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [-880, 160],
+      "typeVersion": 1,
+      "id": "2b5e4c89-62f9-49f6-8eb7-4f3a2907a07c",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## Troubleshooting Checklist\n- Google Sheets credential connected and Sheet ID correct in both Sheets nodes\n- Claude Code project must actually be run against the pending row — this leg is NOT fully automated (see Sticky Note1)\n- If scripts are long, Higgsfield/Seedance generation can take a few minutes — increase Wait duration if jobs regularly time out the polling loop\n- Element ID must match AVATAR_LOCK.md exactly (mohamed-avatar-2 / 9cf95684-c068-4807-bfa8-08aaa3add7c5)",
+        "width": 340,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [-352, 1200],
+      "typeVersion": 1,
+      "id": "ac33883f-84be-4b8a-a512-44e356cd69e7",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "platform": "tiktok",
+        "accountId": {
+          "__rl": true,
+          "value": "199",
+          "mode": "list",
+          "cachedResultName": "sabrina_ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/199"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "postCreateTiktokOptionIsAiGenerated": true,
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 352],
+      "id": "143dcc5c-a1d2-4862-a5cd-99609eed5b82",
+      "name": "Tiktok [BLOTATO]",
+      "retryOnFail": false,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "linkedin",
+        "accountId": {
+          "__rl": true,
+          "value": "4590",
+          "mode": "list",
+          "cachedResultName": "Sabrina Ramonov 🍄",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/4590"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 512],
+      "id": "73651dca-7dbe-408e-b953-c0baaef41df6",
+      "name": "Linkedin [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "facebook",
+        "accountId": {
+          "__rl": true,
+          "value": "369",
+          "mode": "list",
+          "cachedResultName": "Sabrina Ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/369"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "facebookPageId": {
+          "__rl": true,
+          "value": "161711670360847",
+          "mode": "list",
+          "cachedResultName": "Blotato",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/369/subaccounts/161711670360847"
+        },
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 672],
+      "id": "2d249e41-155c-484f-8de8-9751a57c2703",
+      "name": "Facebook [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "accountId": {
+          "__rl": true,
+          "value": "28",
+          "mode": "list",
+          "cachedResultName": "sabrina_ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/28"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 832],
+      "id": "081c7eca-9e2c-4e3b-ba58-423b0340826e",
+      "name": "Instagram [BLOTATO]",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "twitter",
+        "accountId": {
+          "__rl": true,
+          "value": "38",
+          "mode": "list",
+          "cachedResultName": "Sabrina_Ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/38"
+        },
+        "postContentText": "={{ $('Write Short Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 992],
+      "id": "8a0b9903-ca35-4364-b55f-8abeabdf0a1e",
+      "name": "Twitter [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "youtube",
+        "accountId": {
+          "__rl": true,
+          "value": "111",
+          "mode": "list",
+          "cachedResultName": "Sabrina Ramonov 🍄",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/111"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "postCreateYoutubeOptionTitle": "={{ $('Write Short Caption').item.json.message.content.slice(0, 100) }}",
+        "postCreateYoutubeOptionContainsSyntheticMedia": true,
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 1152],
+      "id": "f0932cc5-0eb3-4385-9f7d-2a73132d0ce4",
+      "name": "Youtube [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "threads",
+        "accountId": {
+          "__rl": true,
+          "value": "2537",
+          "mode": "list",
+          "cachedResultName": "sabrina_ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/2537"
+        },
+        "postContentText": "={{ $('Write Short Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 1312],
+      "id": "4a1ca40c-0452-4786-abe4-5072ad47a70b",
+      "name": "Threads [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "bluesky",
+        "accountId": {
+          "__rl": true,
+          "value": "8",
+          "mode": "list",
+          "cachedResultName": "sabrinaramonov.bsky.social",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/8"
+        },
+        "postContentText": "={{ $('Write Short Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 1472],
+      "id": "7c2ab83b-6f13-4290-a741-61dd3874960b",
+      "name": "Bluesky [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "platform": "pinterest",
+        "accountId": {
+          "__rl": true,
+          "value": "358",
+          "mode": "list",
+          "cachedResultName": "sabrina_ramonov",
+          "cachedResultUrl": "https://backend.blotato.com/v2/accounts/358"
+        },
+        "postContentText": "={{ $('Write Long Caption').item.json.message.content }}",
+        "postContentMediaUrls": "={{ $('Upload media').item.json.url }}",
+        "pinterestBoardId": {
+          "__rl": true,
+          "value": "1234",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@blotato/n8n-nodes-blotato.blotato",
+      "typeVersion": 2,
+      "position": [656, 1632],
+      "id": "574dbef0-5b1b-4484-b6ad-f0fff0c221e1",
+      "name": "Pinterest [BLOTATO]",
+      "credentials": {
+        "blotatoApi": {
+          "id": "zI14DNda55rFeyY8",
+          "name": "[S BRAND] Blotato"
+        }
+      },
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Write Long Caption",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch HN Article": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch HN Front Page": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Script": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Setup Higgsfield": {
+      "main": [
+        [
+          {
+            "node": "Write Job to Sheet (for Claude)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Job to Sheet (for Claude)": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Check Sheet for Video URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Sheet for Video URL": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Long Caption": {
+      "main": [
+        [
+          {
+            "node": "Write Short Caption",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Short Caption": {
+      "main": [
+        [
+          {
+            "node": "Setup Higgsfield",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload media": {
+      "main": [
+        [
+          {
+            "node": "Tiktok [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Linkedin [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Facebook [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Instagram [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Twitter [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Youtube [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Threads [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Bluesky [BLOTATO]",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pinterest [BLOTATO]",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Upload media",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tiktok [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linkedin [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Facebook [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Instagram [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Twitter [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Youtube [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Threads [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Bluesky [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Pinterest [BLOTATO]": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Error Report",
+            "type": "main",
+            "index": 8
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "7f3a2b1c-9d4e-4f5a-8b6c-1e2d3f4a5b6c",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "e232d38e020fdf3e4c5aac7fdf84cd849e91ffb2c1ad80af1a4b16753ff64418"
+  },
+  "id": "8GsQuA4539ZC0tNA-higgsfield",
+  "tags": []
+}

@@ -4,3 +4,12 @@ node_modules/
 dist/
 build/
 *.log
+
+# Remotion projects — local render workspaces, not needed by the cloud agent
+ai-content-machine-video/
+remotion-captions/
+
+# Large intermediate/reference media not needed for the daily pipeline
+assets/video/reference-capcut-edit.mp4
+assets/video/closing-outro.mp4
+out/

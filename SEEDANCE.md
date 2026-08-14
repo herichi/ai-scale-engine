@@ -41,11 +41,21 @@ that one; if either changes, update both together).
 
 ## What this guide is
 
-The **one** prompting system for Seedance 2.0 via the Higgsfield MCP, for
-talking-head videos of the locked AI avatar. This is NOT a polished
-corporate advertisement — it should feel warm, personal, energetic,
-genuine, confident, slightly playful, exclusive, founder-to-founder,
-premium but human.
+The **one and only** prompting system for Seedance 2.0 via the Higgsfield
+MCP, for talking-head videos of the locked AI avatar. `GLOBAL_VIDEO_
+DIRECTION.md` has been fully merged into this file and deleted — do not
+recreate it or split these rules back into a second file. Every video
+generation in this project reads only this file.
+
+## CONCEPT (what this video series is, who it's for)
+
+A professional 9:16 vertical founder-style welcome video for the AI Scale
+Engine Skool community. The founder is personally welcoming a small group
+of early members behind the scenes before the official launch.
+
+This is NOT a polished corporate advertisement. It should feel warm,
+personal, energetic, genuine, confident, slightly playful, exclusive,
+founder-to-founder, premium but human.
 
 **The viewer should feel:** "I'm getting early access to something that
 is still being built, and my opinion actually matters."
@@ -122,6 +132,50 @@ subtle — flag with Mohamed if a script implies an open, toothy smile).
 **No rings or jewelry on the hands, no wedding band** (added 2026-07-30
 after a ring hallucinated into a generation with none in the source
 prompt or reference).
+
+---
+
+## Captions and audio pipeline
+
+Natural voice with realistic breaths and pauses. No background music
+unless added later in editing. No text on screen during generation.
+
+**Captions:** every finished video in this series gets burned-in
+captions. Seedance 2.0 has no captioning capability at generation time,
+so captions are added as a separate assembly step: once the clip(s) are
+generated, run them through `explainer_video` with `subtitles: {font:
+...}` — it transcribes the final voiceover (Whisper) and burns timed
+captions automatically. Raw generated clips (pre-assembly) stay
+caption-free; the assembled/stitched final output is the one with
+captions.
+
+**Known gap:** `explainer_video` requires at least 2 distinct clips per
+call — it's a stitching tool with captions as a side effect, not a
+standalone single-clip captioner. There is currently no tool available to
+burn captions onto one standalone clip that isn't being combined with
+another. For a single, independent clip (not part of a multi-part series
+meant to be stitched together), skip Higgsfield captioning entirely and
+rely on the destination platform's own native auto-caption feature after
+upload (TikTok/Instagram both offer this). Do not pair an unrelated clip
+with the standalone one just to satisfy the 2-item minimum — that
+produces a merged video nobody asked for, which is worse than no
+captions.
+
+**Known gap #2 — TikTok's native auto-caption fails on Seedance audio:**
+confirmed on 2 separately published clips (`audio_references`-driven
+Seedance 2.0 generations) — TikTok's caption toggle greys out with "Voix
+non reconnue" / "Voice not recognized," so native auto-captioning does
+not work as a fallback for these clips. Root cause not confirmed (likely
+an audio encoding/format mismatch between Seedance's output track and
+TikTok's speech recognizer — not a content or language issue).
+Workarounds, in order of effort:
+1. Type captions in manually via TikTok's manual caption/text editor
+   (guaranteed to work, slower).
+2. Try `explainer_video` (Whisper-based transcription) — different engine
+   than TikTok's, may succeed where TikTok's recognizer fails, but
+   requires pairing with a second clip (see the gap above).
+3. Instagram's native auto-caption has not yet been confirmed to have the
+   same issue — test there before assuming it also fails.
 
 ---
 
