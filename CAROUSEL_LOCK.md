@@ -258,6 +258,19 @@ A failed DM means **no cancel window exists**. Therefore:
    that nothing is queued. An uncancellable scheduled post is worse than
    no post.
 
+**Checked 2026-08-20: the DM channel has no resolvable Mohamed thread at
+all**, not just a closed window. `@aiscale_engine`'s only Instagram
+conversation (id `189316`) is with an ad lead (`senderId
+27450918321254519`), not Mohamed — there is no message anywhere in it
+from him. **Do not guess that a lead's ID is Mohamed's and DM them** —
+that's a real stranger, not a fallback recipient. Until Mohamed sends the
+business account a DM himself (establishing a real thread to reply into),
+step 4 has nothing to attempt and the run should skip straight from step
+2/3 to step 5's logic — treat "no thread" the same as "window closed."
+`PushNotification` is therefore the *only* working channel right now, not
+just the primary one — re-verify with `blotato_list_conversations` each
+run rather than trusting this note to stay true.
+
 ### Message contents (both channels)
 
 - Both carousels' full copy, as it will appear
