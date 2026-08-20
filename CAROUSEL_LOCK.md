@@ -69,11 +69,16 @@ pass.
 | 3 | No hype | Any adjective/hype word ("effortless", "insane", "game-changing", "10x", "secret") |
 | 4 | No justification | Any clause explaining *why* the new way wins |
 | 5 | CTA verbatim | Final slide ≠ "Join the AI Scale Engine — link in bio." |
-| 6 | Never "course" | The word "course" appears anywhere |
+| 6 | Never "course" | The offer is *described as* a course |
 | 7 | Not a reuse | Copy duplicates a §15b validated example verbatim |
 | 8 | Palette | Any color outside the §3 locked mapping |
 | 9 | Price accuracy | A price appears that isn't $29/month (self-build) or $499 (DFY) |
 | 10 | Single CTA | Content forks to the $499 tier instead of the locked single path |
+
+**Check 6 is about the claim, not the substring.** The locked brand
+signature — *"We don't sell a course. We sell a system."* — contains the
+word but negates it, and is explicitly approved in `CLAUDE.md`. It passes.
+A naive substring match fails this line and must not be used.
 
 Checks 9 and 10 come from `offer.md` — the funnel's primary CTA is
 deliberately single-path (self-build, $29/month). The $499 done-for-you
