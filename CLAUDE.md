@@ -113,6 +113,14 @@ short mirrored contrast lines, no justification, ending on the locked
 CTA. Don't fall back to longer prose-style carousel copy unless Mohamed
 explicitly asks for a different format.
 
+**Carousel Lock (CONFIRMED, 2026-08-20):** [`CAROUSEL_LOCK.md`](CAROUSEL_LOCK.md)
+consolidates that format with the Blotato render mapping (template ID +
+exact brand-color inputs), a 10-check fail-closed validation gate, the
+scheduling slots, and the notify/cancel protocol. Read it before any
+carousel generation. `brand-voice.md` §15b still wins on **copy**;
+`CAROUSEL_LOCK.md` is authoritative for **render, validation, and
+publishing**.
+
 ## Brand Kit — see BRAND_KIT.md (added 2026-07-30)
 
 [`BRAND_KIT.md`](BRAND_KIT.md) is the standing reference for the brand's
@@ -437,7 +445,7 @@ requested yet.
 ## Standing rule — Daily content pipeline skill (CONFIRMED, 2026-08-14)
 
 The `daily-content-pipeline` skill
-(`ThefounderStudio/.claude/skills/daily-content-pipeline/SKILL.md`) runs
+(`.claude/skills/daily-content-pipeline/SKILL.md`) runs
 the full daily loop entirely inside Claude, with no n8n involvement:
 niche research → 3 hook options → avatar video (via the existing
 `avatar-video` skill, locked Element + voice) → locked closing outro →
@@ -450,6 +458,14 @@ from the "Publishing" section's no-blanket-approval default — that rule is
 about not blocking on approval-for-approval's-sake, not about auto-posting
 avatar video to live brand accounts. Confirmed with Mohamed 2026-08-14
 ("je veux bien qu'il s'arrête pour valider la vidéo avant l'envoi").
+
+**Carousels are the deliberate exception.** The `carousel-autopilot` skill
+(`.claude/skills/carousel-autopilot/SKILL.md`) schedules static carousels
+for later and gives Mohamed a **cancel window** instead of a pre-approval
+gate — safe only because it never publishes immediately and cancels its
+own schedules if no notification channel reaches him. Static copy carries
+far less brand risk than video under Mohamed's face and cloned voice, so
+the video gate above stays stricter. Do not harmonise the two.
 
 **Why this exists alongside the n8n handoff rule below:** the n8n workflow
 was built when the assumption was that automation had to live outside

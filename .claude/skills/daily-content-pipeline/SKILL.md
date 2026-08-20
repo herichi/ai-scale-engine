@@ -14,7 +14,7 @@ description: |
   one-off videos from a script Mohamed already wrote (use `avatar-video`
   directly for that), or Remotion motion-graphics videos (no avatar).
 argument-hint: "[--topic override] [--skip-research] [--dry-run]"
-allowed-tools: Read, Write, Bash, WebSearch, WebFetch, AskUserQuestion, SendUserFile, Skill, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__generate_video, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__explainer_video, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__job_display, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__show_generations, mcp__0831e30c-1d8e-4129-8cb5-ca64071f8895__blotato_create_post, mcp__0831e30c-1d8e-4129-8cb5-ca64071f8895__blotato_list_accounts, mcp__0831e30c-1d8e-4129-8cb5-ca64071f8895__blotato_get_post_status
+allowed-tools: Read, Write, Bash, WebSearch, WebFetch, AskUserQuestion, SendUserFile, Skill, mcp__Higgsfiled__generate_video, mcp__Higgsfiled__explainer_video, mcp__Higgsfiled__job_display, mcp__Higgsfiled__show_generations, mcp__Blotato__blotato_create_post, mcp__Blotato__blotato_list_accounts, mcp__Blotato__blotato_get_post_status
 ---
 
 # Daily content pipeline (AI Scale Engine)
@@ -51,7 +51,7 @@ ships inside the repo so cloud agents can discover it):
    too so the script is written to fit the pacing math)
 
 When running locally from `ThefounderStudio/`, prefix each with
-`ai-scale-engine-mo-test-3/`.
+``.
 
 ## Step 1 — Find the angle
 
