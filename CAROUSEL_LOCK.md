@@ -100,15 +100,25 @@ tier is a secondary offer and must NOT appear as the CTA on a carousel.
 Never fall back to generic blue/white. Do not introduce a new accent
 without updating `BRAND_KIT.md` first.
 
-### Primary template — full brand-color control
+### Primary template — confirmed from Mohamed's own reference
 
-**`templateId`: `/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1`**
-("Tutorial Carousel with Minimalist Flat Style")
+**`templateId`: `/base/v2/tweet-card/ba413be6-a840-4e60-8fd6-0066d3b427df/v1`**
+("Tweet Card Carousel with Minimal Style")
 
-Chosen because it exposes `backgroundColor`, `textColor`, **and**
-`borderColor` as explicit inputs — all three locked brand colors are
-controllable. Templates that only expose a background color cannot honour
-the palette and must not be used as primary.
+**This supersedes an earlier version of this file** that specified the
+"Tutorial Carousel" template based on schema-reading alone, before any
+real reference existed. On 2026-08-20 Mohamed supplied an actual rendered
+example from his own Blotato account (`theme: dark`, black bg, white
+text, `AI Scale Engine` / `@aiscale_engine`, verified badge, his logo,
+9:16) — frame-extracted and confirmed to match this template's schema and
+defaults exactly. **A real reference overrides a schema-only guess. If a
+future reference conflicts with this section, the reference wins — update
+this file, don't argue with it.**
+
+It also fits the locked copy format more naturally than the Tutorial
+Carousel did: this template is one text block per card, which maps 1:1
+onto brand-voice.md §15b's "each line is a slide" instruction — no
+heading/description split to force the copy into.
 
 **Always pass explicit `inputs`. Never call `blotato_create_visual` with a
 bare `prompt` and empty `inputs`** — that lets the model invent copy and
@@ -116,49 +126,58 @@ colors, which defeats both the format lock and the palette lock.
 
 ```json
 {
-  "templateId": "/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1",
+  "templateId": "/base/v2/tweet-card/ba413be6-a840-4e60-8fd6-0066d3b427df/v1",
   "inputs": {
-    "font": "font-oswald",
-    "mainTitle": "<hook line, under 50 chars>",
-    "authorName": "Mohamed",
-    "ctaButtonText": "Swipe",
-    "contentItems": [
-      "THE OLD WAY\n<line>\n\nTHE NEW WAY\n<line>"
+    "quotes": [
+      "THE OLD WAY: <line>",
+      "THE NEW WAY: <line>",
+      "Join the AI Scale Engine — link in bio."
     ],
-    "backgroundColor": "#0a0a0a",
-    "textColor": "#f5f1ea",
-    "borderColor": "#ff7a1a",
-    "ctaTitle": "Join the AI Scale Engine — link in bio.",
-    "ctaActions": ["Follow", "Share"],
-    "profileName": "Mohamed",
-    "profileTitle": "AI Scale Engine",
-    "profileDescription": "We don't sell a course. We sell a system.",
-    "profileCta": "Link in bio",
-    "aspectRatio": "4:5"
+    "authorName": "AI Scale Engine",
+    "handle": "aiscale_engine",
+    "verified": true,
+    "theme": "dark",
+    "aspectRatio": "9:16",
+    "profileImage": "<public URL of the logo mark — see note below>"
   }
 }
 ```
 
+Three `quotes` entries = three slides: Old Way, New Way, locked CTA. This
+template has no dedicated color inputs (`theme: dark` maps to the correct
+black/white pairing, matching the locked palette by construction — do not
+try to pass hex colors here, the template doesn't accept them).
+
+**`profileImage` note:** this session's network policy blocks direct file
+upload to Blotato's storage (`blotato_create_presigned_upload_url` returns
+a presigned PUT URL, but the upload itself needs an outbound connection
+this sandbox's proxy rejects with 403). The first real run (2026-08-20)
+shipped without `profileImage` — the field is optional and the card
+renders fine without it, just without the small circular logo. **Save the
+logo file into `assets/brand/logo-mark.png` and get it hosted at a stable
+public URL once** (upload from a session/environment that isn't
+proxy-restricted, or have Mohamed host it) — then this becomes a real
+input instead of a recurring workaround. Track it in `BRAND_KIT.md` §1
+once that URL exists.
+
 **Constraints enforced by the template** (validate before calling, a
 violation is a hard API error, not a warning):
-- `mainTitle`: 5–50 chars
-- each `contentItems` entry: 10–300 chars
-- `ctaTitle`: 5–150 chars
-- `profileDescription`: 10–250 chars
-- `aspectRatio`: `4:5` for feed carousels (`1:1` / `9:16` also valid)
-
-Each `contentItems` entry carries **one complete Old Way / New Way pair**
-so the contrast is fully visible on a single slide rather than split
-across a swipe.
+- each `quotes` entry: 10–280 chars, array max 100 entries
+- `authorName`: 1–60 chars, `handle`: 1–50 chars (no leading `@`)
+- `aspectRatio`: `9:16` confirmed from the reference (`4:5` / `1:1` also
+  valid if a feed-square variant is ever wanted — confirm with Mohamed
+  before switching, since 9:16 is what he's actually used)
 
 ### Fallback template
 
-**`/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1`**
-("Monocolor Background") — use only if the primary fails. It exposes
-`introBackgroundColor`, `contentBackgroundColor`, `accentColor` but **no
-`textColor`**, so text contrast is not guaranteed. Map bg → `#0a0a0a`,
-accent → `#ff7a1a`, and **visually verify the rendered slides** before
-scheduling.
+**`/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1`**
+("Tutorial Carousel, Minimalist Flat Style") — use only if the primary
+fails. Exposes `backgroundColor`/`textColor`/`borderColor` directly, so
+the locked hex palette (§ above) maps onto it exactly: `backgroundColor:
+#0a0a0a`, `textColor: #f5f1ea`, `borderColor: #ff7a1a`. Structurally
+different from the primary (separate intro/content/CTA slides instead of
+one-quote-per-card) — **visually verify the rendered slides** before
+scheduling if you fall back to this.
 
 ### Polling
 
