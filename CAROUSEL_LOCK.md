@@ -138,7 +138,7 @@ colors, which defeats both the format lock and the palette lock.
     "verified": true,
     "theme": "dark",
     "aspectRatio": "9:16",
-    "profileImage": "<public URL of the logo mark — see note below>"
+    "profileImage": "https://d8j0ntlcm91z4.cloudfront.net/user_3BmXuTgLLEXGF8XeA55vjeX2lPV/hf_20260820_214239_2cd4140a-22ee-4f56-8ca2-dddb01d0fa0c.png"
   }
 }
 ```
@@ -148,17 +148,23 @@ template has no dedicated color inputs (`theme: dark` maps to the correct
 black/white pairing, matching the locked palette by construction — do not
 try to pass hex colors here, the template doesn't accept them).
 
-**`profileImage` note:** this session's network policy blocks direct file
+**`profileImage` — LOCKED (2026-08-20):**
+
+```
+https://d8j0ntlcm91z4.cloudfront.net/user_3BmXuTgLLEXGF8XeA55vjeX2lPV/hf_20260820_214239_2cd4140a-22ee-4f56-8ca2-dddb01d0fa0c.png
+```
+
+Mohamed supplied this directly — a stable, already-public URL, no upload
+needed. **Always pass this as `profileImage` from now on.** Mirrored in
+`BRAND_KIT.md` §1 as the source of truth; if the two ever disagree,
+`BRAND_KIT.md` wins and this line needs updating.
+
+History: the first real run (2026-08-20, same day) shipped 3 carousels
+without a logo because this session's network policy blocks direct file
 upload to Blotato's storage (`blotato_create_presigned_upload_url` returns
-a presigned PUT URL, but the upload itself needs an outbound connection
-this sandbox's proxy rejects with 403). The first real run (2026-08-20)
-shipped without `profileImage` — the field is optional and the card
-renders fine without it, just without the small circular logo. **Save the
-logo file into `assets/brand/logo-mark.png` and get it hosted at a stable
-public URL once** (upload from a session/environment that isn't
-proxy-restricted, or have Mohamed host it) — then this becomes a real
-input instead of a recurring workaround. Track it in `BRAND_KIT.md` §1
-once that URL exists.
+a presigned PUT URL, but the upload itself 403s through the proxy). That
+workaround is no longer needed now that a hosted URL exists — don't
+reintroduce the upload attempt.
 
 **Constraints enforced by the template** (validate before calling, a
 violation is a hard API error, not a warning):

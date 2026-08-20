@@ -17,9 +17,14 @@ text on screen.
 
 ## 1. LOGO
 
-- **Primary logo file:** *(attach — e.g. `assets/brand/logo-primary.png`)*
-- **Logo variants:** *(mark, wordmark, icon-only, light-background version,
-  dark-background version — attach each you have)*
+- **Primary logo mark — LOCKED (2026-08-20):**
+  `https://d8j0ntlcm91z4.cloudfront.net/user_3BmXuTgLLEXGF8XeA55vjeX2lPV/hf_20260820_214239_2cd4140a-22ee-4f56-8ca2-dddb01d0fa0c.png`
+  — hosted URL supplied directly by Mohamed, already public. Use this as
+  `profileImage` in every carousel render (`CAROUSEL_LOCK.md` §3) — do not
+  omit it and do not attempt a local upload workaround.
+- **Logo variants:** *(wordmark, light-background version — attach if a
+  need for one comes up; the orange "A" mark on dark/transparent is the
+  only variant confirmed so far)*
 - **Clear space / minimum size:** *(if defined)*
 - **Do NOT:** stretch, recolor outside the locked palette below, place on a
   busy background without sufficient contrast, or crop the mark.
