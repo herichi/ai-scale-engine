@@ -15,7 +15,7 @@ description: |
   generate_image call against visual-reference.md), or video of anyone/
   anything other than Mohamed's locked avatar.
 argument-hint: "[script text] [--duration seconds] [--wps words-per-second]"
-allowed-tools: mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__generate_video, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__explainer_video, mcp__fbc7be1f-a61a-40a8-b9df-6066b4219553__job_display, Read, AskUserQuestion
+allowed-tools: mcp__Higgsfiled__generate_video, mcp__Higgsfiled__explainer_video, mcp__Higgsfiled__job_display, Read, AskUserQuestion
 ---
 
 # Avatar video generation (AI Scale Engine)
@@ -24,19 +24,15 @@ Generates one Seedance clip of Mohamed's locked avatar, speaking in his
 real voice, per the project's locked creative and technical bible, then
 produces a captioned final cut.
 
-**Note on location:** this skill file lives at the `ThefounderStudio` repo
-root (not inside `ai-scale-engine-mo-test-3/`) so it's reliably discovered
-regardless of which subfolder the session is working from. This is a
-deliberate exception to the project's "everything lives inside
-ai-scale-engine-mo-test-3" storage rule — see `CLAUDE.md` in that project
-folder for the note explaining why. All actual creative/generation content
-still lives inside `ai-scale-engine-mo-test-3/` — this file only orchestrates
-it and must be re-read from there every run.
+**Note on location:** this skill ships inside the repo at
+`.claude/skills/avatar-video/` so cloud and local sessions discover it
+identically. All source-of-truth files below live at the repo root — read
+them from there every run.
 
 Read the source-of-truth files before every invocation — do not hardcode
 their content here, since they may be updated independently of this skill:
 
-1. `ai-scale-engine-mo-test-3/SEEDANCE.md` — the **one and only** creative
+1. `SEEDANCE.md` — the **one and only** creative
    and technical bible for this project (concept, identity, studio,
    lighting, camera, performance, continuity, negative rules, captions
    policy, pacing math, hand-gesture bank, lean negative prompts, prompt
@@ -44,10 +40,10 @@ their content here, since they may be updated independently of this skill:
    primary reference for both WHAT to include and HOW to write the
    generate_video call. `GLOBAL_VIDEO_DIRECTION.md` was merged into this
    file and deleted (2026-07-30) — do not reference or recreate it.
-2. `ai-scale-engine-mo-test-3/visual-reference.md` — current locked hero
+2. `visual-reference.md` — current locked hero
    image / generation settings.
-3. `ai-scale-engine-mo-test-3/AVATAR_LOCK.md` — Element ID and usage rule.
-4. `ai-scale-engine-mo-test-3/VOICE_LOCK.md` — locked voice reference
+3. `AVATAR_LOCK.md` — Element ID and usage rule.
+4. `VOICE_LOCK.md` — locked voice reference
    media_id, passed directly as `audio_references`.
 
 ## Inputs needed from the user (ask if not given)
