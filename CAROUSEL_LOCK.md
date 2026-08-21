@@ -276,7 +276,19 @@ run rather than trusting this note to stay true.
 - Both carousels' full copy, as it will appear
 - Scheduled times, stated in **Europe/Paris**, not UTC
 - Every `postSubmissionId`
-- How to cancel: reply to the DM, or `blotato_delete_schedule`
+- **A direct instruction to go review the posts in Blotato itself**
+  (`my.blotato.com`) — open the scheduled-posts view there and
+  approve (do nothing) or remove the post directly in Blotato, not
+  only through a reply to Claude
+- How to also cancel via Claude: reply to the DM, or `blotato_delete_schedule`
+
+**Why both cancel paths (added 2026-08-21):** the Blotato dashboard is
+the ground truth and always available regardless of whether this
+session, its DM channel, or any future Claude session is reachable —
+Mohamed should never be dependent on catching Claude in time. Sending
+him straight to Blotato's own scheduled-posts view is the primary
+cancel path; asking Claude to run `blotato_delete_schedule` is a
+convenience alternative, not the only way out.
 
 ---
 

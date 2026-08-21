@@ -481,6 +481,34 @@ this pipeline unattended, use a local cron on Mohamed's Mac
 (`claude -p "run the daily content pipeline"`), which keeps file and MCP
 access. Don't promise cloud-scheduled runs without solving that first.
 
+## Standing rule — single carousel Routine, cancel via Blotato itself (CONFIRMED, 2026-08-21)
+
+There is exactly **one** scheduled Routine for carousels: "AI Scale
+Engine — Daily Carousel Autopilot (08:00 Paris)" (daily, 06:00 UTC),
+which runs the `carousel-autopilot` skill end to end (research → write
+→ validate → render → schedule → notify) with no human step required
+to fire it.
+
+A second, conflicting Routine ("AI Scale Engine Carousel Pipeline",
+weekdays 09:00 UTC, created 2026-08-21 via the platform's HTTP API
+rather than by a Claude session) briefly existed and generated
+carousels on a different cadence with a different, stricter prompt
+(stop before any Blotato scheduling). Mohamed asked for it gone so
+only one pipeline runs. **A Claude session cannot delete or update a
+Routine it did not create via `create_trigger`** — this is a platform
+guardrail, not a bug — so removing/disabling an externally-created
+Routine like that one requires either Mohamed disabling/deleting it
+himself, or firing it once so its own session can self-disable
+(`enabled: false` only). If a second carousel Routine ever reappears,
+don't assume a Claude session can just delete it — check who/what
+created it first.
+
+**Cancel path strengthened:** the notify step (`CAROUSEL_LOCK.md` §5)
+now always tells Mohamed to go review/approve/remove the scheduled
+post directly in the Blotato dashboard (`my.blotato.com`), not only via
+a reply to Claude — the dashboard is the one cancel path that doesn't
+depend on any particular Claude session being reachable.
+
 ## Reference file stack (may not all exist yet)
 
 `brand-voice.md` (exists), `funnel-map.md`, `AVATAR_LOCK.md`,
